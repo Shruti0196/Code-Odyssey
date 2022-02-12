@@ -1,0 +1,116 @@
+.links{
+    top:0 ;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    margin-top: 20px !important;
+    display: flex;
+    justify-items: end;
+}
+.right-box{
+    min-height: 100vh;
+    min-width: 35vw;
+    background-color:#888bd2;
+    
+}
+.left-box{
+    min-height: 100vh;
+    min-width: 65vw;
+    background-color:white;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.illustration{
+    width: 430px;
+    height: 430px;
+}
+.top-left{
+    width:100px;
+    height: 100px;
+    position: sticky;
+    top:0;
+    margin: 0;
+    padding: 0;
+}
+.bottom-right{
+    width:100px;
+    height: 100px;
+    position:sticky;
+    bottom:0 !important;
+    left: 500px;
+    margin: 0;
+    padding: 0;
+}
+.bottom{
+    background-color: white;
+    width:100px;
+    height: 100px;
+    position: fixed;
+    bottom:0;
+    right:0;
+    margin: 0;
+    padding: 0;
+}
+.top-right{
+    background-color: white;
+    width:100px;
+    height: 100px;
+    position: fixed;
+    top:0;
+    right:0;
+    margin: 0;
+    padding: 0;
+}
+.middle{
+    background-color: white;
+    width:100px;
+    height: 100px;
+    position:initial;
+    /* bottom: 100px; */
+    right: 150px !important;
+    margin: 0;
+    padding: 0;
+}
+.dots{
+    width:100px;
+    height: 100px;
+}
+@media screen and (min-width: 910px) and (max-width: 1285px){
+    .left-box{
+        min-height: 100vh;
+        min-width: 65vw;
+        background-color:white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen  and (max-width: 900px){
+    .right-box{
+        display: none;
+    }
+    .left-box{
+        justify-content: center;
+        min-width: 100vw;
+    }
+}
+@media screen and (min-width: 368px) and (max-width: 768px){
+
+    .left-box{
+        justify-content: center;
+        min-width: 100vh;
+    }
+    .bottom {
+        display: none;
+    }
+    .middle{
+        display: none;
+    }
+    .top-right{
+        display: none;
+    }
+}
