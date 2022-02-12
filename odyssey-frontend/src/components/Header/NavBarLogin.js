@@ -121,7 +121,7 @@ const NavBarLogin = (activePage) => {
             style={{ justifyContent: "center" }}
           >
             <span className="navLinks">
-              <Link disabled={value.login} className="headerLinks" to="/login">
+              <Link disabled={value.login} className="headerLinks" to="/loginforrelative">
                 <button disabled={value.login} className="btn">
                   Login
                 </button>
@@ -129,7 +129,7 @@ const NavBarLogin = (activePage) => {
               <Link
                 disabled={value.signup}
                 className="headerLinks"
-                to="/signup"
+                to="/signupforrelative"
               >
                 <button disabled={value.signup} className="btn">
                   SignUp
