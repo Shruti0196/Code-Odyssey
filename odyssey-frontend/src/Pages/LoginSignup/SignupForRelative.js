@@ -3,7 +3,6 @@ import { Grid } from "@mui/material";
 import illustration2 from "../../Assets/illustration2.svg";
 import blueDots from "../../Assets/blueDots.gif";
 import orangeDots from "../../Assets/orangeDots.gif";
-
 import SignupForRelative from "../../Auth/Signup/SignupForRelative";
 import HeaderLogin from "../../components/Header/HeaderLogin";
 export default function SignupPageRelative() {

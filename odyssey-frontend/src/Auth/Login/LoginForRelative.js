@@ -14,20 +14,21 @@ import { MdEmail, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import welcome from "../../Assets/welcome.svg";
 import { makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 export default function LoginForRelative() {
+  const [isLoading, setLoading] = useState(true);
+
   const useStyles = makeStyles(() => ({
     img: {
       width: "200px",
       height: "200px",
     },
-    imgDiv: {
-      // padding: '0'
-    },
   }));
   const [values, setValues] = useState({
     password: "",
     email: "",
-    code:"",
+    code: "",
     showPassword: false,
   });
   const [showCode, setshowCode] = useState(false);
@@ -49,6 +50,49 @@ export default function LoginForRelative() {
     console.log(setValues);
     setValues({ ...values, showPassword: !values.showPassword });
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+    createacc();
+  };
+
+  const history = useNavigate();
+
+  async function createacc() {
+    console.log("hello");
+    try {
+      let result = await fetch(
+        "http://hackathonwork.pythonanywhere.com/auth/login/",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      result = await result.json();
+      console.log(result);
+      if (result.tokens) {
+        // console.log("hello");
+        history("/create");
+      }
+    } catch (error) {
+      console.log("Error" + error);
+      alert("Please enter valid credentials");
+      setLoading(false);
+    }
+  }
+
   const classes = useStyles();
   return (
     <>
@@ -61,12 +105,12 @@ export default function LoginForRelative() {
         maxWidth="xs"
       >
         <div className={classes.imgDiv}>
-          <img src={welcome} className={classes.img} />
+          <img src={welcome} className={classes.img} alt="" />
         </div>
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 1 }}>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <InputLabel htmlFor="email">Email</InputLabel>
@@ -122,14 +166,14 @@ export default function LoginForRelative() {
               />
             </Grid>
             <Grid spacing={3} item xs={12}>
-              <InputLabel htmlFor="code">Code</InputLabel>
+              <InputLabel htmlFor="code">Patient's Name</InputLabel>
               <FilledInput
                 id="code"
-                label="code"
+                label="name"
                 color="primary"
                 required
-                type={showCode ? "text" : "code"}
-                name="code"
+                type="text"
+                name="name"
                 variant="outlined"
                 value={values.code}
                 fullWidth
@@ -142,17 +186,14 @@ export default function LoginForRelative() {
                       onClick={handleClickShowCode}
                       edge="end"
                     >
-                      {showCode ? (
-                        <MdVisibilityOff />
-                      ) : (
-                        <MdVisibility />
-                      )}
+                      {showCode ? <MdVisibilityOff /> : <MdVisibility />}
                     </IconButton>
                   </InputAdornment>
                 }
               />
             </Grid>
             <Button
+              type="submit"
               fullWidth
               variant="contained"
               sx={{ ml: 2, mt: 2, mb: 1 }}
