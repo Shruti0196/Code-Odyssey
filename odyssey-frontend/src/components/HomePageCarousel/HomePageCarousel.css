@@ -1,0 +1,18 @@
+.carousel-grid{
+    width: 100vw;
+    height: 60vh;
+    margin: 20px 50px 20px 40px;
+}
+.carousel-container{
+    border-radius: 50px;
+    width: 80vw;
+    height: 60vh;
+    display: block;
+}
+.image{
+    width: 80vw;
+    height: 60vh;
+}
+.caption{
+    font-size: 1.5rem;
+}
