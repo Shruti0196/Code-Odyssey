@@ -3,9 +3,9 @@ import HomePageCarousel from "../../../components/HomePageCarousel/HomePageCarou
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import { motion, AnimatePresence } from "framer-motion";
-// import About from "./About";
-// import Reach from "./Reach";
-// import Supporters from "./Supporters";
+import About from "./About";
+import Reach from "./Reach";
+import Supporters from "./Supporters";
 
 const landingpageAnimation = {
   initial: { y: "-100vh", opacity: 0, scale: 0.5 },
@@ -24,6 +24,9 @@ const HomePage = () => {
       <AnimatePresence>
         <motion.div {...landingpageAnimation}>
           <HomePageCarousel />
+          <About/>
+          <Reach/>
+          <Supporters/>
         </motion.div>
       </AnimatePresence>
       <Footer />
