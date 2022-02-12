@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react';
-import {Grid, Typography, FilledInput, Box} from '@mui/material';
+import { useState, useEffect } from 'react';
+import {Grid, Typography, FilledInput, Button, Box} from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
 import HeaderAdmin from './HeaderAdmin'
 import create from "../../Assets/create.jpg";
@@ -17,6 +17,9 @@ const useStyles = makeStyles(() => ({
     backgroundSize: "cover",
   },
 }));
+
+
+
 const Create = () => {
   const [values, setValues] = useState({
     name: "",
@@ -29,6 +32,41 @@ const Create = () => {
     food:"",
     relatives:"",
   });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    createLog();
+  }
+    async function createLog(){
+      try{
+        let result = await fetch("http://hackathonwork.pythonanywhere.com/updates/create",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            name: values.name,
+            food: values.food,
+            medicine: values.medicines,
+            appointment: values.appointment,
+            relatives: values.relatives,
+            healthstatus: values.healthStatus,
+            dob: values.dob,
+            allergies: values.allergies,
+            roomno: values.roomNo,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    result = await result.json();
+    console.log(result);
+  }
+  catch (error) {
+    console.log("Error" + error);
+   }
+}
+
   const handleChanges = (event) => {
     setValues({
       ...values,
@@ -45,6 +83,7 @@ const Create = () => {
         <Grid item xs={12} sm={12} md={6} lg={6} style={{marginTop:"20px", marginLeft:"36px"}}>
         <Typography style={{fontSize: "30px"}}>Create a Patient Log</Typography>
         </Grid>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
         <Grid container direction="row" >
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Name</Typography>
@@ -77,7 +116,7 @@ const Create = () => {
                 label="dob"
                 autoFocus
                 required
-                type="date"
+                type="text"
                 name="dob"
                 variant="outlined"
                 color="primary"
@@ -242,6 +281,21 @@ const Create = () => {
               />
         </Grid>
         </Grid>
+        <Button
+              
+              type="submit"
+              variant="contained"
+              sx={{ ml: 2, mt: 2, mb: 1 }}
+              style={{
+                backgroundColor: "#fb3b30",
+                color: "#888bd2",
+                fontWeight: "bold",
+                fontSize: "18px",
+              }}
+            >
+              Submit
+            </Button>
+            </Box>
         </Grid>
     </div>
   )
