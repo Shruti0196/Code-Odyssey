@@ -36,7 +36,6 @@ export default function View(props) {
         );
         patientName = (await response.json());
          console.log(patientName);
-        //  setCard(patientName);
       } catch (error) {
         console.log("Error" + error);
         patientName = [];

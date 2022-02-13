@@ -1,11 +1,9 @@
 import React from "react";
 import HeaderAdmin from "./HeaderAdmin";
 import { Grid, Card, CardContent, Typography } from "@mui/material";
-import { makeStyles } from '@material-ui/styles';
-import { useState, useEffect } from 'react'
-const useStyles = makeStyles(() => ({
+import { makeStyles } from "@material-ui/styles";
+import { useState, useEffect } from "react";
 
-}));
 const Enrolled = () => {
   // const enrolled=[
   //   {pn:"lacy green",
@@ -19,7 +17,7 @@ const Enrolled = () => {
   //   code:"123456"},
   // ]
   const [card, setCard] = useState([]);
-   
+
   useEffect(() => {
     (async () => {
       // console.log(props.match.params.item_id)
@@ -39,70 +37,100 @@ const Enrolled = () => {
             },
           }
         );
-        patientName = (await response.json());
-         console.log(patientName);
+        patientName = await response.json();
+        console.log(patientName);
         //  setCard(patientName);
       } catch (error) {
         console.log("Error" + error);
         patientName = [];
       }
-      
+
       setCard(patientName.data);
-      })(); 
+    })();
   }, []);
 
-  const classes = useStyles();
   return (
     <div>
       <HeaderAdmin activePage="Enrolled" />
 
-      <Grid container display="flex" flexDirection="row" direction="row" justify="center" justifyContent="space-evenly" alignItems="flex-start">
-        <div style={{display: "inline"}}>
+      <Grid
+        container
+        display="flex"
+        flexDirection="row"
+        direction="row"
+        justify="center"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+      >
+        <div style={{ display: "inline" }}>
           <Typography variant="h5">Patient Name</Typography>
-        <Grid container direction="column" justifyContent="space-evenly" alignItems="center" style={{gap:45, marginTop:10}}>
-       {card.map((card,_)=>{
-         return(
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-         <Card variant="outlined" style={{backgroundColor:"#ffeee4"}}>
-           <CardContent>
-             {card.name}
-           </CardContent>
-         </Card>
-         </Grid>
-         )
-       })}
-       </Grid></div>
-       <div style={{display: "inline"}}>
-       <Typography variant="h5">Relatives Enrolled</Typography>
-       <Grid container direction="column" justifyContent="space-evenly" alignItems="center" style={{gap:45, marginTop:10}}>
-       {card.map((card,_)=>{
-         return(
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-         <Card variant="outlined" style={{backgroundColor:"#888bd2"}}>
-           <CardContent>
-             {card.relatives}
-           </CardContent>
-         </Card>
-         </Grid>
-         )
-       })}
-       </Grid>
-       </div>
-       <div style={{display: "inline"}}>
-       <Typography variant="h5">Code</Typography>
-       <Grid container direction="column" justifyContent="space-evenly" alignItems="center" style={{gap:45, marginTop:10}}>
-       {card.map((card,_)=>{
-         return(
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-         <Card variant="outlined" style={{backgroundColor:"#fb3b30"}}>
-           <CardContent>
-             {card.name}
-           </CardContent>
-         </Card>
-         </Grid>
-         )
-       })}
-       </Grid></div>
+          <Grid
+            container
+            direction="column"
+            justifyContent="space-evenly"
+            alignItems="center"
+            style={{ gap: 45, marginTop: 10 }}
+          >
+            {card.map((card, _) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <Card
+                    variant="outlined"
+                    style={{ backgroundColor: "#ffeee4" }}
+                  >
+                    <CardContent>{card.name}</CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </div>
+        <div style={{ display: "inline" }}>
+          <Typography variant="h5">Relatives Enrolled</Typography>
+          <Grid
+            container
+            direction="column"
+            justifyContent="space-evenly"
+            alignItems="center"
+            style={{ gap: 45, marginTop: 10 }}
+          >
+            {card.map((card, _) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <Card
+                    variant="outlined"
+                    style={{ backgroundColor: "#888bd2" }}
+                  >
+                    <CardContent>{card.relatives}</CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </div>
+        <div style={{ display: "inline" }}>
+          <Typography variant="h5">Code</Typography>
+          <Grid
+            container
+            direction="column"
+            justifyContent="space-evenly"
+            alignItems="center"
+            style={{ gap: 45, marginTop: 10 }}
+          >
+            {card.map((card, _) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <Card
+                    variant="outlined"
+                    style={{ backgroundColor: "#fb3b30" }}
+                  >
+                    <CardContent>{card.name}</CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </div>
       </Grid>
     </div>
   );

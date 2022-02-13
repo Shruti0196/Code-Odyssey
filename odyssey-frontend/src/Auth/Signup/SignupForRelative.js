@@ -15,6 +15,7 @@ import { BsFillFileEarmarkPersonFill } from "react-icons/bs";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 export default function SignupForRelative(props) {
   const [isLoading, setLoading] = useState(true);
@@ -74,8 +75,9 @@ export default function SignupForRelative(props) {
       result = await result;
       console.log(result);
       
-      if (result.tokens) {
-        alert("Signed in Successfully! Please verify your email");
+      if (result) {
+        // alert("Signed in Successfully! Please verify your email");
+        swal("Hooray!!", "You have successfully signedup", "success");
         history("/loginforrelative");
       }
     } catch (error) {

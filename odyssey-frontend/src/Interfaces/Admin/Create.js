@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {Grid, Typography, FilledInput, Button, Box} from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
 import HeaderAdmin from './HeaderAdmin'
@@ -34,7 +34,7 @@ const Create = () => {
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    // const data = new FormData(event.currentTarget);
     createLog();
   }
     async function createLog(){
@@ -81,7 +81,7 @@ const Create = () => {
         <HeaderAdmin activePage="Create" />
         <Grid container direction="column" justifyContent="space-evenly" alignItems="flex-start" style={{gap:15}}> 
         <Grid item xs={12} sm={12} md={6} lg={6} style={{marginTop:"20px", marginLeft:"36px"}}>
-        <Typography style={{fontSize: "30px"}}>Create a Patient Log</Typography>
+        <Typography style={{fontSize: "30px"}}>Create a Member Log</Typography>
         </Grid>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
         <Grid container direction="row" marginBottom={5}>
@@ -115,8 +115,6 @@ const Create = () => {
         <FilledInput
                 id="dob"
                 label="dob"
-                autoFocus
-                required
                 type="text"
                 name="dob"
                 variant="outlined"
@@ -138,7 +136,6 @@ const Create = () => {
         <FilledInput
                 id="roomNo"
                 label="roomNo"
-                autoFocus
                 required
                 type="text"
                 name="roomNo"
@@ -161,7 +158,6 @@ const Create = () => {
         <FilledInput
                 id="allergies"
                 label="allergies"
-                autoFocus
                 required
                 type="text"
                 name="allergies"
@@ -184,7 +180,6 @@ const Create = () => {
         <FilledInput
                 id="medicines"
                 label="medicines"
-                autoFocus
                 required
                 type="text"
                 name="medicines"
@@ -207,7 +202,6 @@ const Create = () => {
         <FilledInput
                 id="healthStatus"
                 label="healthStatus"
-                autoFocus
                 required
                 type="text"
                 name="healthStatus"
@@ -230,7 +224,6 @@ const Create = () => {
         <FilledInput
                 id="appointments"
                 label="appointments"
-                autoFocus
                 required
                 type="text"
                 name="appointments"
@@ -253,7 +246,6 @@ const Create = () => {
         <FilledInput
                 id="food"
                 label="food"
-                autoFocus
                 required
                 type="text"
                 name="food"
@@ -276,7 +268,6 @@ const Create = () => {
         <FilledInput
                 id="relatives"
                 label="relatives"
-                autoFocus
                 required
                 type="text"
                 name="relatives"
