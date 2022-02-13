@@ -14,8 +14,14 @@ import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import "./Header.css";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 const NavBarLogin = (activePage) => {
+  const [login, setLogin] = React.useState("");
+  const [signup, setSignup] = React.useState("");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   let value = {
     login: false,
@@ -24,6 +30,11 @@ const NavBarLogin = (activePage) => {
   let page = activePage.activePage.activePage;
   if (page === "Login") value.login = true;
   else if (page === "Signup") value.signup = true;
+
+  const handleChange = (event) => {
+    setLogin(event.target.value);
+  };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -120,21 +131,53 @@ const NavBarLogin = (activePage) => {
             sx={{ flexGrow: 2, display: { xs: "none", md: "flex" } }}
             style={{ justifyContent: "center" }}
           >
-            <span className="navLinks">
-              <Link disabled={value.login} className="headerLinks" to="/loginforrelative">
-                <button disabled={value.login} className="btn">
-                  Login
-                </button>
-              </Link>
-              <Link
-                disabled={value.signup}
-                className="headerLinks"
-                to="/signupforrelative"
-              >
-                <button disabled={value.signup} className="btn">
-                  SignUp
-                </button>
-              </Link>
+            <span className="navLinks" style={{ whiteSpace:"nowrap", display:"flex", flexDirection:"row" }}>
+              <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">LOGIN</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={login}
+                  label="Login"
+                  onChange={handleChange}
+                  // style={{ display: "inlineBlock" }}
+                >
+                  <Link to="/loginforadmin" style={{ textDecoration: "none" }}>
+                    <MenuItem value={10}>Admin</MenuItem>
+                  </Link>
+                  <Link
+                    to="/loginforrelative"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <MenuItem value={20}>Relative</MenuItem>
+                  </Link>
+                </Select>
+              </FormControl>
+              {/* </Box>
+              <Box sx={{ minWidth: 120 }}> */}
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">SIGNUP</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={signup}
+                  label="Signup"
+                  onChange={handleChange}
+                  style={{ backgroundColor:"#f3a26d" }}
+                >
+                  <Link to="/signupforadmin" style={{ textDecoration: "none" }}>
+                    <MenuItem value={10}>Admin</MenuItem>
+                  </Link>
+                  <Link
+                    to="/signupforrelative"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <MenuItem value={20}>Relative</MenuItem>
+                  </Link>
+                </Select>
+              </FormControl>
+              </Box>
             </span>
           </Box>
         </Toolbar>

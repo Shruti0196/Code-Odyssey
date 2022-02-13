@@ -19,10 +19,20 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import "./Header.css";
+import logo from "../../Assets/logo.gif";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const NavBar = (activePage) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [login, setLogin] = React.useState("");
+  const [signup, setSignup] = React.useState("");
+
+  const handleChange = (event) => {
+    setLogin(event.target.value);
+  };
   const settings = ["Logout"];
   let value = {
     home: false,
@@ -32,9 +42,7 @@ const NavBar = (activePage) => {
   };
   let page = activePage.activePage.activePage;
   if (page === "Home") value.home = true;
-  else if (page === "Events") value.events = true;
-  else if (page === "Committee") value.Committee = true;
-  else if (page === "contactUS") value.contactUS = true;
+  else if (page === "Donate") value.donate = true;
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -85,10 +93,11 @@ const NavBar = (activePage) => {
             </ListItemText>
           </ListItem>
         </Link>
-        {["Events", "Committee", "Contact Us"].map((text) => (
+        {["Donate"].map((text) => (
           <Link
             className="headerLinks"
-            to={`/${text.toLowerCase().replace(" ", "-")}`}
+            target="-blank"
+            to="https://pages.razorpay.com/pl_Iv8oF3Tp3y1zGB/view"
           >
             <ListItem button key={text}>
               <ListItemIcon>
@@ -100,6 +109,23 @@ const NavBar = (activePage) => {
             </ListItem>
           </Link>
         ))}
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Login</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={login}
+            label="Login"
+            onChange={handleChange}
+          >
+            <Link to="/loginforadmin">
+              <MenuItem value={10}>Admin</MenuItem>
+            </Link>
+            <Link to="/loginforrelative">
+              <MenuItem value={20}>Relative</MenuItem>
+            </Link>
+          </Select>
+        </FormControl>
       </List>
     </Box>
   );
@@ -119,11 +145,7 @@ const NavBar = (activePage) => {
           >
             <Link to="/">
               {" "}
-              <img
-                width="50px"
-                src="https://www.freeiconspng.com/uploads/sign-check-flat-icon-png-29.png"
-                alt="acmIcon"
-              />{" "}
+              <img width="50px" src={logo} alt="acmIcon" />{" "}
             </Link>
           </Typography>
 
@@ -170,49 +192,72 @@ const NavBar = (activePage) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            <img
-              width="89"
-              src="https://www.freeiconspng.com/uploads/sign-check-flat-icon-png-29.png"
-              alt="acmIcon"
-            />
+            <img width="89" src={logo} alt="acmIcon" />
           </Typography>
           <Box
             sx={{ flexGrow: 2, display: { xs: "none", md: "flex" } }}
             style={{ justifyContent: "center" }}
           >
-            <span className="navLinks">
+            <span className="navLinks" style={{ whiteSpace:"nowrap", display:"flex", flexDirection:"row" }}>
               <Link disabled={value.home} className="headerLinks" to="/">
-                <button disabled={value.home} className="btn">
+                <button disabled={value.home} className="btn" /*style={{ display: "inlineBlock" }}*/>
                   Home
                 </button>
               </Link>
-              <Link
-                disabled={value.events}
+              <a
+                href="https://pages.razorpay.com/pl_Iv8oF3Tp3y1zGB/view"
+                rel="noreferrer"
+                target="_blank"
                 className="headerLinks"
-                to="/events"
               >
-                <button disabled={value.events} className="btn">
-                  Events
-                </button>
-              </Link>
-              <Link
-                disabled={value.Committee}
-                className="headerLinks"
-                to="/committee"
-              >
-                <button disabled={value.Committee} className="btn">
-                  Committee
-                </button>
-              </Link>
-              <Link
-                disabled={value.contactUS}
-                className="headerLinks"
-                to="/contact-us"
-              >
-                <button disabled={value.contactUS} className="btn">
-                  Contact Us
-                </button>
-              </Link>
+                <button className="btn" /*style={{ display: "inlineBlock" }}*/>Donate</button>
+              </a>
+              <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">LOGIN</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={login}
+                  label="Login"
+                  onChange={handleChange}
+                  // style={{ display: "inlineBlock" }}
+                >
+                  <Link to="/loginforadmin" style={{ textDecoration: "none" }}>
+                    <MenuItem value={10}>Admin</MenuItem>
+                  </Link>
+                  <Link
+                    to="/loginforrelative"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <MenuItem value={20}>Relative</MenuItem>
+                  </Link>
+                </Select>
+              </FormControl>
+              {/* </Box>
+              <Box sx={{ minWidth: 120 }}> */}
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">SIGNUP</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={signup}
+                  label="Signup"
+                  onChange={handleChange}
+                  style={{ backgroundColor:"#f3a26d" }}
+                >
+                  <Link to="/signupforadmin" style={{ textDecoration: "none" }}>
+                    <MenuItem value={10}>Admin</MenuItem>
+                  </Link>
+                  <Link
+                    to="/signupforrelative"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <MenuItem value={20}>Relative</MenuItem>
+                  </Link>
+                </Select>
+              </FormControl>
+              </Box>
             </span>
           </Box>
 

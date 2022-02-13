@@ -45,7 +45,7 @@ export default function Reach() {
         <Grid md={4} xs={12}>
           <Grid item sx={{ backgroundColor: "transparent" }}>
             <div
-              data-aos="fade-left"
+              data-aos="fade-up"
               className="reachImg"
               style={{ justifyContent: "center", alignItems: "center" }}
             >
