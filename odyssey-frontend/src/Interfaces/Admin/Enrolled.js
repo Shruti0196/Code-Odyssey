@@ -5,33 +5,17 @@ import { makeStyles } from "@material-ui/styles";
 import { useState, useEffect } from "react";
 
 const Enrolled = () => {
-  // const enrolled=[
-  //   {pn:"lacy green",
-  //   rl:"ayan shah, sanika ardekar",
-  //   code:"123456"},
-  //   {pn:"kim green",
-  //   rl:"ayan shah, sanika ardekar",
-  //   code:"123456"},
-  //   {pn:"hello green",
-  //   rl:"ayan shah, sanika ardekar",
-  //   code:"123456"},
-  // ]
   const [card, setCard] = useState([]);
 
   useEffect(() => {
     (async () => {
-      // console.log(props.match.params.item_id)
       let patientName;
       try {
-        //let token = localStorage.getItem("itemName");
-        // let idi = props.match.params.id;
-        // setOrderitem(id);
         let response = await fetch(
           "http://hackathonwork.pythonanywhere.com/updates/list",
           {
             method: "GET",
             headers: {
-              // Authorization: `token ${token}`,
               "Content-Type": "application/json",
               Accept: "application/json",
             },
@@ -39,7 +23,6 @@ const Enrolled = () => {
         );
         patientName = await response.json();
         console.log(patientName);
-        //  setCard(patientName);
       } catch (error) {
         console.log("Error" + error);
         patientName = [];
