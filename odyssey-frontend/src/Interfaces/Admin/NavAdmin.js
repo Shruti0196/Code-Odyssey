@@ -26,7 +26,6 @@ const NavAdmin = (activePage) => {
   if (page === "Create") value.create = true;
   else if (page === "View") value.view = true;
   else if (page === "Enrolled") value.enrolled = true;
-  else if (page === "Verify") value.verify = true;
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -59,7 +58,7 @@ const NavAdmin = (activePage) => {
       style={{ backgroundColor: "white", height: "100%" }}
     >
       <List>
-        {["Create", "View", "Enrolled", "Verify"].map((text) => (
+        {["Create", "View", "Enrolled"].map((text) => (
           <Link className="headerLinks" to={`/${text.toLowerCase()}`}>
             <ListItem button key={text}>
               <ListItemIcon>
@@ -145,15 +144,6 @@ const NavAdmin = (activePage) => {
               >
                 <button disabled={value.enrolled} className="btn">
                   Enrolled
-                </button>
-              </Link>
-              <Link
-                disabled={value.verify}
-                className="headerLinks"
-                to="/verify"
-              >
-                <button disabled={value.verify} className="btn">
-                  Verify
                 </button>
               </Link>
             </span>

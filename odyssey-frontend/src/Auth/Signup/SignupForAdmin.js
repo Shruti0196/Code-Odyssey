@@ -14,6 +14,7 @@ import { BsFillFileEarmarkPersonFill } from "react-icons/bs";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 export default function SignupForAdmin() {
   const [isLoading, setLoading] = useState(true);
@@ -74,15 +75,11 @@ export default function SignupForAdmin() {
           },
         }
       );
-      result = await result;
-      console.log(result);
-      // saveToken(result.token);
-      // saveUsername(result.email);
-      // saveUserId(result.user_id);
       result = await result.json();
       console.log(result);
-      if(result.tokens){
-        alert("Signed in Successfully! Please verify your email");
+      if(result){
+        // alert("Signed in Successfully! Please verify your email");
+        swal("Hurry!!", "You have successfully signedup", "success");
         history("/loginforadmin");
       }
     } catch (error) {
