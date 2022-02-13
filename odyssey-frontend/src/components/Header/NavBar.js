@@ -198,9 +198,9 @@ const NavBar = (activePage) => {
             sx={{ flexGrow: 2, display: { xs: "none", md: "flex" } }}
             style={{ justifyContent: "center" }}
           >
-            <span className="navLinks" style={{ whiteSpace:"nowrap" }}>
+            <span className="navLinks" style={{ whiteSpace:"nowrap", display:"flex", flexDirection:"row" }}>
               <Link disabled={value.home} className="headerLinks" to="/">
-                <button disabled={value.home} className="btn" style={{ display: "inlineBlock" }}>
+                <button disabled={value.home} className="btn" /*style={{ display: "inlineBlock" }}*/>
                   Home
                 </button>
               </Link>
@@ -210,18 +210,18 @@ const NavBar = (activePage) => {
                 target="_blank"
                 className="headerLinks"
               >
-                <button className="btn" style={{ display: "inlineBlock" }}>Donate</button>
+                <button className="btn" /*style={{ display: "inlineBlock" }}*/>Donate</button>
               </a>
               <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Login</InputLabel>
+                <InputLabel id="demo-simple-select-label">LOGIN</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={login}
                   label="Login"
                   onChange={handleChange}
-                  style={{ display: "inlineBlock" }}
+                  // style={{ display: "inlineBlock" }}
                 >
                   <Link to="/loginforadmin" style={{ textDecoration: "none" }}>
                     <MenuItem value={10}>Admin</MenuItem>
@@ -234,17 +234,17 @@ const NavBar = (activePage) => {
                   </Link>
                 </Select>
               </FormControl>
-              </Box>
-              <Box sx={{ minWidth: 120 }}>
+              {/* </Box>
+              <Box sx={{ minWidth: 120 }}> */}
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Signup</InputLabel>
+                <InputLabel id="demo-simple-select-label">SIGNUP</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={signup}
                   label="Signup"
                   onChange={handleChange}
-                  style={{ display: "inlineBlock" }}
+                  style={{ backgroundColor:"#f3a26d" }}
                 >
                   <Link to="/signupforadmin" style={{ textDecoration: "none" }}>
                     <MenuItem value={10}>Admin</MenuItem>
