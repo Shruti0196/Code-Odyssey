@@ -16,7 +16,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-export default function SignupForRelative() {
+export default function SignupForRelative(props) {
   const [isLoading, setLoading] = useState(true);
 
   const [values, setValues] = useState({
@@ -73,6 +73,7 @@ export default function SignupForRelative() {
       );
       result = await result;
       console.log(result);
+      
       if (result.tokens) {
         alert("Signed in Successfully! Please verify your email");
         history("/loginforrelative");
@@ -82,7 +83,7 @@ export default function SignupForRelative() {
       setLoading(false);
     }
   }
-
+   
   return (
     <>
       <Container

@@ -84,7 +84,7 @@ const Create = () => {
         <Typography style={{fontSize: "30px"}}>Create a Patient Log</Typography>
         </Grid>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Name</Typography>
         </Grid>
@@ -102,11 +102,12 @@ const Create = () => {
                 value={values.name}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
          
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Date Of Birth</Typography>
         </Grid>
@@ -124,11 +125,12 @@ const Create = () => {
                 value={values.dob}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
 
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Room Number Alloted</Typography>
         </Grid>
@@ -146,11 +148,12 @@ const Create = () => {
                 value={values.roomNo}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
 
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Allergies</Typography>
         </Grid>
@@ -168,11 +171,12 @@ const Create = () => {
                 value={values.allergies}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
 
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Medicines</Typography>
         </Grid>
@@ -190,11 +194,12 @@ const Create = () => {
                 value={values.medicines}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
 
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Health Status</Typography>
         </Grid>
@@ -212,11 +217,12 @@ const Create = () => {
                 value={values.healthStatus}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
 
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Appointments</Typography>
         </Grid>
@@ -234,11 +240,12 @@ const Create = () => {
                 value={values.appointments}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
 
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Food</Typography>
         </Grid>
@@ -256,11 +263,12 @@ const Create = () => {
                 value={values.food}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
 
-        <Grid container direction="row" >
+        <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Relatives Known</Typography>
         </Grid>
@@ -278,6 +286,7 @@ const Create = () => {
                 value={values.relatives}
                 fullWidth
                 onChange={handleChanges}
+                style={{width:"250px"}}
               />
         </Grid>
         </Grid>
