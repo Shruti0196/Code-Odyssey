@@ -4,7 +4,8 @@ import { Grid, Card, CardContent, CardActionArea, CardMedia, Typography, Box } f
 import HeaderAdmin from './HeaderAdmin'
 import viewPerson from '../../Assets/viewPerson.jpg';
 import view from '../../Assets/view.jpg';
-export default function View(props) {
+import { Link } from 'react-router-dom';
+export default function View({data,setData}) {
   // const patients=[
   //   {pn:"acwjcv"},
   //   {pn:"lucy"},
@@ -62,6 +63,7 @@ export default function View(props) {
          return(
           
           <Grid item xs={12} sm={6} md={4} lg={3} key={card.id}>
+            <Link to={{pathname:"/:name"}}>
            <CardActionArea>
              <Card variant="outlined" style={{height: "42vh", 
             //  backgroundColor:"#fb3b30"
@@ -74,6 +76,7 @@ export default function View(props) {
                </CardContent>
              </Card>
            </CardActionArea>
+           </Link>
           </Grid>
          
          )
