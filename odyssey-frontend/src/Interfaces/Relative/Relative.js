@@ -9,9 +9,10 @@ export default function Relative(props)
         (async()=>{
             let patientData;
             try{
-                
-              //let token = localStorage.getItem('itemName')
-              // console.log(token);
+              // let id = props.match.params.id;
+              // console.log(id);
+              // let name = props.match.params.code;
+              // console.log(name);
                 let response = await fetch(
                             "http://hackathonwork.pythonanywhere.com/updates/retrieve/yash",
                             {
