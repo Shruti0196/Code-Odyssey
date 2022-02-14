@@ -1,5 +1,6 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Grid, Typography } from '@mui/material';
 export default function PatientDetails({data,setData}){
+  console.log(data);
     function createData(Parameter, Information) {
         return { Parameter, Information };
       }
