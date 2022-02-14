@@ -84,7 +84,7 @@ export default function LoginForRelative() {
       console.log(result);
       if (result.tokens) {
         // console.log("hello");
-        history("/create");
+        history("/relative");
       }
     } catch (error) {
       console.log("Error" + error);

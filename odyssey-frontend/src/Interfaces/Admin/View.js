@@ -37,7 +37,6 @@ export default function View({data,setData}) {
         );
         patientName = (await response.json());
          console.log(patientName);
-        //  setCard(patientName);
       } catch (error) {
         console.log("Error" + error);
         patientName = [];
