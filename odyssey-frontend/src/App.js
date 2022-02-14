@@ -22,7 +22,7 @@ import SignupForRelative from "./Auth/Signup/SignupForRelative";
 function App() {
   const [data,setData]=useState({})
   useEffect(()=>{
-    //console.log(card)
+    //console.log(data)
     },[data] )
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function App() {
         <Route exact path="/relative" element={<Relative/>} />
         {/* <Route exact path="/patient/:id" render={(props)=>{
         return( <PatientDetails {...props} /> )}} /> */}
-        {/* <Route exact path="/:name" element={<PatientDetails data = { data } setData = { setData } />} /> */}
+        <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
         <Route exact path="/signupforadmin" element={<SignupPageAdmin />} />
         <Route exact path="/signupforrelative" element={<SignupPageRelative/>} />
         <Route exact path="/loginforadmin" element={<LoginPageAdmin />} />

@@ -64,8 +64,8 @@ export default function View({data,setData}) {
          return(
           
           <Grid item xs={12} sm={6} md={4} lg={3} key={card.id}>
-            <Link to={{pathname:"/:name"}}>
-           <CardActionArea>
+            <Link to={{pathname: "/view/"+card.name}} style={{textDecoration:"none"}}>
+           <CardActionArea onClick={()=>{setData(card)}}>
              <Card variant="outlined" style={{height: "42vh", 
             //  backgroundColor:"#fb3b30"
              }}>
