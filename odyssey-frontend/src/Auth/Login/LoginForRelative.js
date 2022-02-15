@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginForRelative() {
   const [isLoading, setLoading] = useState(true);
-
+let patient;
   const useStyles = makeStyles(() => ({
     img: {
       width: "200px",
@@ -83,7 +83,6 @@ export default function LoginForRelative() {
       result = await result.json();
       console.log(result);
       if (result.tokens) {
-        // console.log("hello");
         history("/relative");
       }
     } catch (error) {

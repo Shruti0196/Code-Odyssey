@@ -10,13 +10,13 @@ import {
   Route,
 } from "react-router-dom";
 import Create from "./Interfaces/Admin/Create";
-import View from "./Interfaces/Admin/View";
 import Enrolled from "./Interfaces/Admin/Enrolled";
 import Relative from './Interfaces/Relative/Relative';
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
-import SignupForRelative from "./Auth/Signup/SignupForRelative";
+import { useState, useEffect } from "react";
+import PatientDetails from "./Interfaces/Admin/PatientDetails"
+import View from "./Interfaces/Admin/View";
 
 function App() {
   const [data,setData]=useState({})
@@ -34,6 +34,7 @@ function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/create" element={<Create />} />
         <Route exact path="/view" element={<View data = { data } setData = { setData } />} />
+        <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
         <Route exact path="/enrolled" element={<Enrolled />} />
 <<<<<<< HEAD
         <Route exact path="/relative" element={<Relative/>} />
