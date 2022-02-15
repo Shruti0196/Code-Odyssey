@@ -1,22 +1,22 @@
-import * as React from 'react';
-import {useState, useEffect} from 'react';
-import { Grid, Card, CardContent, CardActionArea, CardMedia, Typography, Box } from '@mui/material';
-import HeaderAdmin from './HeaderAdmin'
-import viewPerson from '../../Assets/viewPerson.jpg';
-import view from '../../Assets/view.jpg';
-import {Link} from "react-router-dom"
+import * as React from "react";
+import { useState, useEffect } from "react";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardActionArea,
+  CardMedia,
+  Typography,
+  Box,
+} from "@mui/material";
+import HeaderAdmin from "./HeaderAdmin";
+import viewPerson from "../../Assets/viewPerson.jpg";
+import view from "../../Assets/view.jpg";
+import { Link } from "react-router-dom";
 
-export default function View({data,setData}) {
-  // const patients=[
-  //   {pn:"acwjcv"},
-  //   {pn:"lucy"},
-  //   {pn:"sanika"},
-  //   {pn:"jena"},
-  //   {pn:"leo"},
-  // ]
-
+export default function View({ data, setData }) {
   const [card, setCard] = useState([]);
-   
+
   useEffect(() => {
     (async () => {
       // console.log(props.match.params.item_id)
@@ -36,55 +36,72 @@ export default function View({data,setData}) {
             },
           }
         );
-        patientName = (await response.json());
-         console.log(patientName);
+        patientName = await response.json();
+        console.log(patientName);
       } catch (error) {
         console.log("Error" + error);
         patientName = [];
       }
-      
+
       setCard(patientName.data);
-      })(); 
+    })();
   }, []);
-     // let id = props.match.params.name;
+  // let id = props.match.params.name;
   return (
-    <div style={{backgroundImage: "url(" + view +")",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",}}>
-    <HeaderAdmin activePage="View" />
-    <Box ml={5} mr={5} pl={7} pr={3} mt={3} pt={3} mb={1} pb={1} >
-    <Grid container
+    <div
+      style={{
+        backgroundImage: "url(" + view + ")",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <HeaderAdmin activePage="View" />
+      <Box ml={5} mr={5} pl={7} pr={3} mt={3} pt={3} mb={1} pb={1}>
+        <Grid
+          container
           spacing={3}
           alignContent="flex-start"
           justifyContent="center"
           marginleft={40}
-          marginright={40}>
-     {
-       card.map((card,_)=>{
-         return(
-          
-          <Grid item xs={12} sm={6} md={4} lg={3} key={card.id}>
-            <Link to={{pathname: "/view/"+card.name}} style={{textDecoration:"none"}}>
-           <CardActionArea onClick={()=>{setData(card)}}>
-             <Card variant="outlined" style={{height: "42vh", 
-            //  backgroundColor:"#fb3b30"
-             }}>
-               <CardMedia component="img"
-                      height="230"
-                      image={viewPerson}/>
-               <CardContent>
-                 <Typography variant="h4" align="center">{card.name}</Typography>
-               </CardContent>
-             </Card>
-           </CardActionArea>
-           </Link>
-          </Grid>
-         
-         )
-       })
-     }
-    </Grid>
-     </Box>
+          marginright={40}
+        >
+          {card.map((card, _) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={card.id}>
+                <Link
+                  to={{ pathname: "/view/" + card.name }}
+                  style={{ textDecoration: "none" }}
+                >
+                  <CardActionArea
+                    onClick={() => {
+                      setData(card);
+                    }}
+                  >
+                    <Card
+                      variant="outlined"
+                      style={{
+                        height: "42vh",
+                        //  backgroundColor:"#fb3b30"
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        height="230"
+                        image={viewPerson}
+                      />
+                      <CardContent>
+                        <Typography variant="h4" align="center">
+                          {card.name}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </CardActionArea>
+                </Link>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
     </div>
   );
 }

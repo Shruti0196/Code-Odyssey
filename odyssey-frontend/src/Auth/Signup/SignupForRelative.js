@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 
-export default function SignupForRelative(props) {
+export default function SignupForRelative() {
   const [isLoading, setLoading] = useState(true);
 
   const [values, setValues] = useState({
