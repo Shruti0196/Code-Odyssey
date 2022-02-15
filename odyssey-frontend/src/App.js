@@ -21,7 +21,7 @@ import View from "./Interfaces/Admin/View";
 function App() {
   const [data,setData]=useState({})
   useEffect(()=>{
-    //console.log(card)
+    //console.log(data)
     },[data] )
 
   useEffect(() => {
@@ -36,7 +36,14 @@ function App() {
         <Route exact path="/view" element={<View data = { data } setData = { setData } />} />
         <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
         <Route exact path="/enrolled" element={<Enrolled />} />
+<<<<<<< HEAD
+        <Route exact path="/relative" element={<Relative/>} />
+        {/* <Route exact path="/patient/:id" render={(props)=>{
+        return( <PatientDetails {...props} /> )}} /> */}
+        <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
+=======
         <Route exact path="/relative" element={<Relative />} />
+>>>>>>> 0bdce905d5cae8595f6edf16facde058e1b333e3
         <Route exact path="/signupforadmin" element={<SignupPageAdmin />} />
         <Route exact path="/signupforrelative" element={<SignupPageRelative />}/>
         <Route exact path="/loginforadmin" element={<LoginPageAdmin />} />
