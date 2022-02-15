@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginForRelative() {
   const [isLoading, setLoading] = useState(true);
-let patient;
+  
   const useStyles = makeStyles(() => ({
     img: {
       width: "200px",
@@ -31,6 +31,11 @@ let patient;
     code: "",
     showPassword: false,
   });
+
+  const handle = () => {
+    localStorage.setItem('Name', values.code)
+  }
+
   const [showCode, setshowCode] = useState(false);
   const handleClickShowCode = () => {
     setshowCode(!showCode);
@@ -195,6 +200,7 @@ let patient;
               type="submit"
               fullWidth
               variant="contained"
+              onClick={handle}
               sx={{ ml: 2, mt: 2, mb: 1 }}
               style={{
                 backgroundColor: "#fb3b30",
