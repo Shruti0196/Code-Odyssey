@@ -15,8 +15,15 @@ import Enrolled from "./Interfaces/Admin/Enrolled";
 import Relative from './Interfaces/Relative/Relative';
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import PatientDetails from "./Interfaces/Admin/PatientDetails"
+
 function App() {
+
+  const [data,setData]=useState({})
+  useEffect(()=>{
+    //console.log(data)
+    },[data] )
 
   useEffect(() => {
     Aos.init({ duration: 1000, once: true });
@@ -27,7 +34,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/create" element={<Create />} />
-        <Route exact path="/view" element={<View />} />
+        <Route exact path="/view" element={<View data = { data } setData = { setData } />} />
+        <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
         <Route exact path="/enrolled" element={<Enrolled />} />
         <Route exact path="/relative" element={<Relative />} />
         <Route exact path="/signupforadmin" element={<SignupPageAdmin />} />

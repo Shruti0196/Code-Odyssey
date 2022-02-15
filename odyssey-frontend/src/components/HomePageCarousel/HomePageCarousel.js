@@ -76,7 +76,7 @@ export default function HomePageCarousel()
                   alt="slide"
                 />
                 <Carousel.Caption>
-                  <p className="caption"><b>hello okay we are team nekoma making a website thank you</b></p>
+                  <p className="caption"><h1 style={{color:"#fb3b30"}}>Old age is not a disease  it is strength</h1></p>
                 </Carousel.Caption>
               </Carousel.Item>
              );
