@@ -14,7 +14,7 @@ export default function Relative(props)
               // let name = props.match.params.code;
               // console.log(name);
                 let response = await fetch(
-                            "http://hackathonwork.pythonanywhere.com/updates/retrieve/yash",
+                            "http://hackathonwork.pythonanywhere.com/updates/retrieve/sri",
                             {
                               method: "GET",
                               headers: {
