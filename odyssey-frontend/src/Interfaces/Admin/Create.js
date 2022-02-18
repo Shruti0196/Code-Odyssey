@@ -4,6 +4,8 @@ import {Grid, Typography, FilledInput, Button, Box} from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
 import HeaderAdmin from './HeaderAdmin'
 import create from "../../Assets/create.jpg";
+import swal from 'sweetalert';
+
 const useStyles = makeStyles(() => ({
   inputTitles:{
     fontStyle: "normal",
@@ -17,8 +19,6 @@ const useStyles = makeStyles(() => ({
     backgroundSize: "cover",
   },
 }));
-
-
 
 const Create = () => {
   const [values, setValues] = useState({
@@ -46,7 +46,7 @@ const Create = () => {
             name: values.name,
             food: values.food,
             medicine: values.medicines,
-            appointment: values.appointment,
+            appointment: values.appointments,
             relatives: values.relatives,
             healthstatus: values.healthStatus,
             dob: values.dob,
@@ -282,8 +282,10 @@ const Create = () => {
         </Grid>
         </Grid>
         <Button
-              
               type="submit"
+              onClick={()=>{
+                swal("Done!", "Patient data saved successfully!", "success");
+              }}
               variant="contained"
               sx={{ ml: 2, mt: 2, mb: 1 }}
               style={{
