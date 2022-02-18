@@ -37,7 +37,7 @@ function App() {
         <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
         <Route exact path="/enrolled" element={<Enrolled />} />
         <Route exact path="/relative" element={<Relative/>} />
-        <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
+        <Route exact path="/view/:name" element={<PatientDetails /*data = { data } setData = { setData }*/ />} />
         <Route exact path="/signupforadmin" element={<SignupPageAdmin />} />
         <Route exact path="/signupforrelative" element={<SignupPageRelative />}/>
         <Route exact path="/loginforadmin" element={<LoginPageAdmin />} />

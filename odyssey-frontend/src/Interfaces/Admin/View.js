@@ -92,9 +92,9 @@ export default function View({ data, setData }) {
                   style={{ textDecoration: "none" }}
                 >
                   <CardActionArea
-                    onClick={() => {
-                      setData(card);
-                    }}
+                    // onClick={() => {
+                    //   setData(card);
+                    // }}
                   >
                     <Card
                       variant="outlined"
