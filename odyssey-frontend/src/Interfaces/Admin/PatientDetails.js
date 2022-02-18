@@ -60,9 +60,10 @@ export default function PatientDetails(/*{card,setData}*/){
     <Grid item xs={12} sm={12} md={6} lg={6} style={{marginTop:"80px", marginLeft:"80px"}}>
         <Typography style={{fontSize: "30px"}}>Patient Name: {card.name}</Typography>
         </Grid>
-     <Grid container
-     width="100vh"
-     display="flex"
+        <Grid
+          container
+          width="100vh"
+          display="flex"
           alignContent="center"
           justifyContent="center"
           marginTop={5}
