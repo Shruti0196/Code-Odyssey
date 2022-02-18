@@ -14,7 +14,7 @@ import viewPerson from "../../Assets/viewPerson.jpg";
 import view from "../../Assets/view.jpg";
 import { Link } from "react-router-dom";
 
-export default function View({ data, setData }) {
+export default function View(/*{ data, setData }*/) {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -73,9 +73,9 @@ export default function View({ data, setData }) {
                   style={{ textDecoration: "none" }}
                 >
                   <CardActionArea
-                    onClick={() => {
-                      setData(card);
-                    }}
+                    // onClick={() => {
+                    //   setData(card);
+                    // }}
                   >
                     <Card
                       variant="outlined"
