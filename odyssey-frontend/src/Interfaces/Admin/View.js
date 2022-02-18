@@ -12,15 +12,18 @@ import {
 import HeaderAdmin from "./HeaderAdmin";
 import viewPerson from "../../Assets/viewPerson.jpg";
 import view from "../../Assets/view.jpg";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
 
 export default function View({ data, setData }) {
   const patient = localStorage.getItem("Name");
   console.log(patient);
 
   const [card, setCard] = useState([]);
+
+const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -114,7 +117,11 @@ export default function View({ data, setData }) {
                           <RiDeleteBin5Line style={{float:"right", marginRight:"2px"}}
                             onClick={() => {
                               deleteitem(card.id);
-                              swal("Done!","Item deleted successfully!", "success");
+                              swal("Done!","Item deleted successfully!", "success")
+                              .then(()=>{
+                                navigate('/view')
+                              }
+                              )
                             }}
                           />
                         </Typography>
