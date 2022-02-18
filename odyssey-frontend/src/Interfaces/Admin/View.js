@@ -13,8 +13,13 @@ import HeaderAdmin from "./HeaderAdmin";
 import viewPerson from "../../Assets/viewPerson.jpg";
 import view from "../../Assets/view.jpg";
 import { Link } from "react-router-dom";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import swal from 'sweetalert';
 
 export default function View({ data, setData }) {
+  const patient = localStorage.getItem("Name");
+  console.log(patient);
+
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -46,6 +51,20 @@ export default function View({ data, setData }) {
       setCard(patientName.data);
     })();
   }, []);
+
+  const deleteitem = (patient) => {
+    fetch(
+      `https://hackathonwork.pythonanywhere.com/updates/delete/${patient}`,
+      {
+        method: "DELETE",
+      }
+    ).then((result) => {
+      result.json().then((resp) => {
+        console.log(resp);
+      });
+    });
+  };
+
   // let id = props.match.params.name;
   return (
     <div
@@ -92,6 +111,12 @@ export default function View({ data, setData }) {
                       <CardContent>
                         <Typography variant="h4" align="center">
                           {card.name}
+                          <RiDeleteBin5Line style={{float:"right", marginRight:"2px"}}
+                            onClick={() => {
+                              deleteitem(card.id);
+                              swal("Done!","Item deleted successfully!", "success");
+                            }}
+                          />
                         </Typography>
                       </CardContent>
                     </Card>
