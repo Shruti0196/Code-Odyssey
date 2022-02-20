@@ -12,6 +12,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: "normal",
     fontSize: "25px",
     lineHeight: "30px",
+    marginRight: "50px"
   },
   grid:{
     backgroundImage: "url(" + create +")",
