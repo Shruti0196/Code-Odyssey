@@ -14,11 +14,12 @@ import viewPerson from "../../Assets/viewPerson.jpg";
 import view from "../../Assets/view.jpg";
 import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import swal from 'sweetalert';
+import { FiEdit } from "react-icons/fi";
+import swal from "sweetalert";
 
 export default function View({ data, setData }) {
   const patient = localStorage.getItem("Name");
-  console.log(patient);
+  //console.log(patient);
 
   const [card, setCard] = useState([]);
 
@@ -91,10 +92,25 @@ export default function View({ data, setData }) {
                   to={{ pathname: "/view/" + card.name }}
                   style={{ textDecoration: "none" }}
                 >
+                  <Link to={{ pathname: "/edit/" + card.name }}>
+                    <FiEdit
+                    style={{ float: "right", marginRight: "5px" }}
+                      onClick={() => {
+                        setData(card);
+                      }}
+                    />
+                  </Link>
+                  <RiDeleteBin5Line
+                    style={{ float: "right", marginRight: "5px" }}
+                    onClick={() => {
+                      deleteitem(card.id);
+                      swal("Done!", "Item deleted successfully!", "success");
+                    }}
+                  />
                   <CardActionArea
-                    // onClick={() => {
-                    //   setData(card);
-                    // }}
+                    onClick={() => {
+                      setData(card);
+                    }}
                   >
                     <Card
                       variant="outlined"
@@ -111,12 +127,12 @@ export default function View({ data, setData }) {
                       <CardContent>
                         <Typography variant="h4" align="center">
                           {card.name}
-                          <RiDeleteBin5Line style={{float:"right", marginRight:"2px"}}
+                          {/* <RiDeleteBin5Line style={{float:"right", marginRight:"2px"}}
                             onClick={() => {
                               deleteitem(card.id);
                               swal("Done!","Item deleted successfully!", "success");
                             }}
-                          />
+                          /> */}
                         </Typography>
                       </CardContent>
                     </Card>
