@@ -17,6 +17,7 @@ import "aos/dist/aos.css";
 import { useState, useEffect } from "react";
 import PatientDetails from "./Interfaces/Admin/PatientDetails"
 import View from "./Interfaces/Admin/View";
+import Edit from "./Interfaces/Admin/Edit"
 
 function App() {
   const [data,setData]=useState({})
@@ -34,10 +35,11 @@ function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/create" element={<Create />} />
         <Route exact path="/view" element={<View data = { data } setData = { setData } />} />
+        <Route exact path="/edit/:name" element={<Edit data = { data } setData = { setData } />} />
         <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
         <Route exact path="/enrolled" element={<Enrolled />} />
         <Route exact path="/relative" element={<Relative/>} />
-        <Route exact path="/view/:name" element={<PatientDetails /*data = { data } setData = { setData }*/ />} />
+        <Route exact path="/view/:name" element={<PatientDetails data = { data } setData = { setData } />} />
         <Route exact path="/signupforadmin" element={<SignupPageAdmin />} />
         <Route exact path="/signupforrelative" element={<SignupPageRelative />}/>
         <Route exact path="/loginforadmin" element={<LoginPageAdmin />} />
