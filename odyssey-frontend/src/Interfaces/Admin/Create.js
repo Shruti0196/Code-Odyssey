@@ -302,7 +302,6 @@ const Create = () => {
               type="submit"
               onClick={()=>{
                 swal("Done!", "Patient data saved successfully!", "success");
-                
               }}
               variant="contained"
               sx={{ ml: 2, mt: 2, mb: 1 }}
