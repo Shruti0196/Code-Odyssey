@@ -17,10 +17,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import swal from "sweetalert";
 
-export default function View({ data, setData }) {
-  const patient = localStorage.getItem("Name");
-  //console.log(patient);
-
+export default function View() {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -88,29 +85,38 @@ export default function View({ data, setData }) {
           {card.map((card, _) => {
             return (
               <Grid item xs={12} sm={6} md={4} lg={3} key={card.id}>
-                <Link
+                {/* <Link
                   to={{ pathname: "/view/" + card.name }}
                   style={{ textDecoration: "none" }}
-                >
-                  <Link to={{ pathname: "/edit/" + card.name }}>
-                    <FiEdit
-                    style={{ float: "right", marginRight: "5px" }}
-                      onClick={() => {
-                        setData(card);
-                      }}
-                    />
-                  </Link>
-                  <RiDeleteBin5Line
-                    style={{ float: "right", marginRight: "5px" }}
-                    onClick={() => {
-                      deleteitem(card.id);
-                      swal("Done!", "Item deleted successfully!", "success");
+                > */}
+                <Link to={{ pathname: "/edit/" + card.name + "/" + card.id }}>
+                  <FiEdit
+                    style={{
+                      float: "right",
+                      marginRight: "5px",
+                      textDecoration: "none",
                     }}
                   />
+                </Link>
+                <RiDeleteBin5Line
+                  style={{
+                    float: "right",
+                    marginRight: "5px",
+                    textDecoration: "none",
+                  }}
+                  onClick={() => {
+                    deleteitem(card.id);
+                    swal("Done!", "Item deleted successfully!", "success");
+                  }}
+                />
+                <Link
+                  to={{ pathname: "/view/" + card.name + "/" + card.id }}
+                  style={{ textDecoration: "none" }}
+                >
                   <CardActionArea
-                    onClick={() => {
-                      setData(card);
-                    }}
+                  // onClick={() => {
+                  //   setData(card);
+                  // }}
                   >
                     <Card
                       variant="outlined"

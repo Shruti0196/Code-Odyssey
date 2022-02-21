@@ -8,22 +8,52 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-// import { FiEdit } from "react-icons/fi";
 import { useState, useEffect } from "react";
-export default function PatientDetails({data,setData}) {
-  console.log(data);
+import { useParams } from "react-router-dom";
+
+export default function PatientDetails() {
+  //console.log(data);
+  const { id } = useParams();
+
+  const [card, setCard] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      let patientName;
+      try {
+        let response = await fetch(
+          `http://hackathonwork.pythonanywhere.com/updates/retrieve/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        );
+        patientName = await response.json();
+        console.log(patientName);
+      } catch (error) {
+        console.log("Error" + error);
+        patientName = [];
+      }
+
+      setCard(patientName.data);
+    })();
+  }, []);
+
   function createData(Parameter, Information) {
     return { Parameter, Information };
   }
 
   const rows = [
-    createData("Food", data.food),
-    createData("Medicines", data.medicine),
-    createData("Appointment(s)", data.appointment),
-    createData("Health Status", data.healthstatus),
-    createData("Allergie(s)", data.allergies),
-    createData("Room Number Alloted", data.roomno),
-    createData("Relatives Enrolled", data.relatives),
+    createData("Food", card.food),
+    createData("Medicines", card.medicine),
+    createData("Appointment(s)", card.appointment),
+    createData("Health Status", card.healthstatus),
+    createData("Allergie(s)", card.allergies),
+    createData("Room Number Alloted", card.roomno),
+    createData("Relatives Enrolled", card.relatives),
   ];
   return (
     <>
@@ -37,7 +67,7 @@ export default function PatientDetails({data,setData}) {
           style={{ marginTop: "80px", marginLeft: "80px" }}
         >
           <Typography style={{ fontSize: "30px" }}>
-            Patient Name: {data.name}
+            Patient Name: {card.name}
           </Typography>
         </Grid>
         <Grid
