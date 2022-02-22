@@ -37,6 +37,22 @@ const Create = () => {
     event.preventDefault();
     // const data = new FormData(event.currentTarget);
     createLog();
+
+  }
+  const clearFields = (event) => {
+    // values.name = "";
+    // values.dob = "";
+    // values.roomNo = "";
+    // values.allergies ="";
+    // values.medicines="";
+    // values.healthStatus="";
+    // values.appointments="";
+    // values.food="";
+    // values.relatives="";
+    setValues({
+      ...values,
+      [event.target.name]: "",
+    });
   }
     async function createLog(){
       try{
@@ -285,8 +301,7 @@ const Create = () => {
         <Button
               type="submit"
               onClick={()=>{
-                swal("Done!", "Patient data saved successfully!", "success")
-                .then=()=>{values.name=""};
+                swal("Done!", "Patient data saved successfully!", "success");
               }}
               variant="contained"
               sx={{ ml: 2, mt: 2, mb: 1 }}
