@@ -33,7 +33,7 @@ export default function LoginForRelative() {
   });
 
   const handle = () => {
-    localStorage.setItem('Name', values.code)
+    localStorage.setItem('id', values.code)
   }
 
   const [showCode, setshowCode] = useState(false);
