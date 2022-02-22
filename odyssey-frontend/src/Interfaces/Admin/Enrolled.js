@@ -106,7 +106,7 @@ const Enrolled = () => {
                     variant="outlined"
                     style={{ backgroundColor: "#fb3b30" }}
                   >
-                    <CardContent>{card.name}</CardContent>
+                    <CardContent>{card.id}</CardContent>
                   </Card>
                 </Grid>
               );

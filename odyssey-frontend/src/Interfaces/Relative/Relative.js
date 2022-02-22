@@ -10,10 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function Relative(props) {
+export default function Relative() {
   const [card, setCard] = useState([]);
 
-  const patient = localStorage.getItem('Name');
+  const patient = localStorage.getItem('id');
   console.log(patient);
 
   useEffect(() => {
