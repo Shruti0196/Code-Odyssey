@@ -170,14 +170,14 @@ export default function LoginForRelative() {
               />
             </Grid>
             <Grid spacing={3} item xs={12}>
-              <InputLabel htmlFor="code">Patient's Name</InputLabel>
+              <InputLabel htmlFor="code">Patient's Code</InputLabel>
               <FilledInput
                 id="code"
                 label="name"
                 color="primary"
                 required
                 type="text"
-                name="name"
+                name="number"
                 variant="outlined"
                 value={values.code}
                 fullWidth
