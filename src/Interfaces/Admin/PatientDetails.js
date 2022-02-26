@@ -40,7 +40,7 @@ export default function PatientDetails() {
 
       setCard(patientName.data);
     })();
-  }, []);
+  }, [id]);
 
   function createData(Parameter, Information) {
     return { Parameter, Information };

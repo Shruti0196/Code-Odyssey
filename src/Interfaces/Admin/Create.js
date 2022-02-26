@@ -39,21 +39,6 @@ const Create = () => {
     createLog();
 
   }
-  const clearFields = (event) => {
-    // values.name = "";
-    // values.dob = "";
-    // values.roomNo = "";
-    // values.allergies ="";
-    // values.medicines="";
-    // values.healthStatus="";
-    // values.appointments="";
-    // values.food="";
-    // values.relatives="";
-    setValues({
-      ...values,
-      [event.target.name]: "",
-    });
-  }
     async function createLog(){
       try{
         let result = await fetch("http://hackathonwork.pythonanywhere.com/updates/create",

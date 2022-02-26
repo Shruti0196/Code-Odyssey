@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 
 export default function SignupForRelative() {
-  const [isLoading, setLoading] = useState(true);
+  const [setLoading] = useState(true);
 
   const [values, setValues] = useState({
     username: "",

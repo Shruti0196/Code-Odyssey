@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Grid, Typography, TextField, Button, Box } from "@mui/material";
+import { Grid, Typography, TextField, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -46,24 +46,24 @@ export default function Edit({ data, setData }) {
   const [relatives, setRelatives] = useState(null);
 
   useEffect(() => {
+    let loadPatients = async () => {
+      const result = await axios.get(
+        `http://hackathonwork.pythonanywhere.com/updates/retrieve/${id}`
+      );
+      //console.log(result.data.data.name);
+      setName(result.data.data.name);
+      setDob(result.data.data.dob);
+      setroomNo(result.data.data.roomno);
+      setAllergies(result.data.data.allergies);
+      setMedicines(result.data.data.medicine);
+      sethealthStatus(result.data.data.healthstatus);
+      setAppointments(result.data.data.appointment);
+      setFood(result.data.data.food);
+      setRelatives(result.data.data.relatives);
+    };
     loadPatients();
-  }, []);
-
-  let loadPatients = async () => {
-    const result = await axios.get(
-      `http://hackathonwork.pythonanywhere.com/updates/retrieve/${id}`
-    );
-    //console.log(result.data.data.name);
-    setName(result.data.data.name);
-    setDob(result.data.data.dob);
-    setroomNo(result.data.data.roomno);
-    setAllergies(result.data.data.allergies);
-    setMedicines(result.data.data.medicine);
-    sethealthStatus(result.data.data.healthstatus);
-    setAppointments(result.data.data.appointment);
-    setFood(result.data.data.food);
-    setRelatives(result.data.data.relatives);
-  };
+  }, [id]);
+  
   const editLog = async () => {
     let formField = new FormData();
 

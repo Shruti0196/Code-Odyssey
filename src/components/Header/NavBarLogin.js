@@ -21,7 +21,7 @@ import Select from "@mui/material/Select";
 
 const NavBarLogin = (activePage) => {
   const [login, setLogin] = React.useState("");
-  const [signup, setSignup] = React.useState("");
+  const [signup] = React.useState("");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   let value = {
     login: false,
