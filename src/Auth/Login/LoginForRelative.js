@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForRelative() {
-  const [isLoading, setLoading] = useState(true);
+  const [setLoading] = useState(true);
   
   const useStyles = makeStyles(() => ({
     img: {
