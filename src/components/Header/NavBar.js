@@ -245,7 +245,7 @@ const NavBar = (activePage) => {
                   value={signup}
                   label="Signup"
                   onChange={handleChange}
-                  style={{ backgroundColor:"#f3a26d" }}
+                  style={{ backgroundColor:"#ffc619" }}
                 >
                   <Link to="/signupforadmin" style={{ textDecoration: "none" }}>
                     <MenuItem value={10}>Admin</MenuItem>
