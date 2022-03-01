@@ -117,6 +117,7 @@ const NavBar = (activePage) => {
             value={login}
             label="Login"
             onChange={handleChange}
+            style={{fontWeight:"bold"}}
           >
             <Link to="/loginforadmin">
               <MenuItem value={10}>Admin</MenuItem>
@@ -196,7 +197,7 @@ const NavBar = (activePage) => {
           </Typography>
           <Box
             sx={{ flexGrow: 2, display: { xs: "none", md: "flex" } }}
-            style={{ justifyContent: "center" }}
+            style={{ justifyContent: "center", paddingRight:"200px",zIndex:"-1.5rem" }}
           >
             <span className="navLinks" style={{ whiteSpace:"nowrap", display:"flex", flexDirection:"row" }}>
               <Link disabled={value.home} className="headerLinks" to="/">

@@ -96,6 +96,7 @@ export default function SignupForAdmin() {
         initial={{ x: "-100vw" }}
         animate={{ x: 0 }}
         maxWidth="xs"
+        style={{paddingTop:"100px"}}
       >
         <Typography component="h1" variant="h5">
           Sign up

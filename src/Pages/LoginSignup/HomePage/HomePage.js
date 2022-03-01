@@ -1,37 +1,32 @@
-import React from "react";
-import HomePageCarousel from "../../../components/HomePageCarousel/HomePageCarousel";
-import Header from "../../../components/Header/Header";
-import Footer from "../../../components/Footer/Footer";
-import { motion, AnimatePresence } from "framer-motion";
-import About from "./About";
-import Reach from "./Reach";
-import Supporters from "./Supporters";
+import NavBar from "../../../components/Header/NavBar"
+import { Grid, Typography } from "@mui/material";
+import "./HomePage.css";
 
-const landingpageAnimation = {
-  initial: { y: "-100vh", opacity: 0, scale: 0.5 },
-  animate: { y: 0, opacity: 0.98, scale: 1 },
-  exit: {
-    y: "-100vh",
-    opacity: 0,
-    transition: { duration: 0.1, ease: "ease" },
-  },
-  transition: { duration: 0.5, ease: "anticipate" },
-};
-const HomePage = () => {
+export default function HomePage() {
   return (
-    <div style={{ backgroundColor: "white" }}>
-      <Header activePage="Home" />
-      <AnimatePresence>
-        <motion.div {...landingpageAnimation}>
-          <HomePageCarousel />
-          <About/>
-          <Reach/>
-          <Supporters/>
-        </motion.div>
-      </AnimatePresence>
-      <Footer />
-    </div>
+    <>
+      <NavBar activePage="Home"/>
+      <Grid
+        container
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        direction="row"
+      >
+        <Grid item sm={6} md={3} className="leftBox">
+          <div className="text">
+            <Grid item sm={6} md={3}>
+              <Typography style={{ fontSize: "3.5rem", letterSpacing: 1, fontFamily:"Roboto" }}>Neko Old Age Home</Typography>
+            </Grid>
+            <br />
+            <Grid item sm={6} md={3}>
+              <Typography style={{ fontFamily:"Roboto", fontSize: "1.5rem" }}>Making Millions Smile 😊</Typography>
+            </Grid>
+            <br />
+          </div>
+        </Grid>
+        <Grid item sm={6} md={6} className="rightBox"></Grid>
+      </Grid>
+    </>
   );
-};
-
-export default HomePage;
+}
