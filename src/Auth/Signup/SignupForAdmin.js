@@ -1,4 +1,3 @@
-import "./SignupForRelative.css";
 import {
   Grid,
   Box,
@@ -17,14 +16,13 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 
-export default function SignupForRelative() {
-  const [isLoading, setLoading] = useState(true);
+export default function SignupForAdmin() {
+  const [setLoading] = useState(true);
 
   const [values, setValues] = useState({
-    username: "",
-    name: "",
     email: "",
     password: "",
+    username: "",
   });
   const [showPassword1, setshowPassword1] = useState(false);
   const handleClickShowPassword1 = () => {
@@ -37,6 +35,11 @@ export default function SignupForRelative() {
     });
     console.log(values);
   };
+
+  // const handleClickShowPassword2 = () => {
+  //   setValues({ ...values, showPassword2: !values.showPassword2 });
+  // };
+
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -47,7 +50,7 @@ export default function SignupForRelative() {
     console.log({
       email: data.get("email"),
       password: data.get("password"),
-      name: data.get("name"),
+      username: data.get("username"),
     });
     createacc();
   };
@@ -72,20 +75,19 @@ export default function SignupForRelative() {
           },
         }
       );
-      result = await result;
+      result = await result.json();
       console.log(result);
-      
-      if (result) {
+      if(result){
         // alert("Signed in Successfully! Please verify your email");
-        swal("Hooray!!", "You have successfully signedup", "success");
-        history("/loginforrelative");
+        swal("Hurry!!", "You have successfully signedup", "success");
+        history("/loginforadmin");
       }
     } catch (error) {
       console.log("Error" + error);
       setLoading(false);
-    }
+     }
   }
-   
+
   return (
     <>
       <Container
@@ -128,8 +130,9 @@ export default function SignupForRelative() {
                 id="email"
                 label="Email Address"
                 name="email"
+                type="email"
                 autoComplete="email"
-                value={values.email}
+                value={values.email.trim()}
                 onChange={handleChanges}
                 endAdornment={
                   <InputAdornment position="end">
@@ -146,7 +149,7 @@ export default function SignupForRelative() {
                 id="filled-adornment-password"
                 fullWidth
                 type={showPassword1 ? "text" : "password"}
-                value={values.password}
+                value={values.password.trim()}
                 onChange={handleChange("password")}
                 endAdornment={
                   <InputAdornment position="end">

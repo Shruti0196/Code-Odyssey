@@ -16,45 +16,23 @@ import { makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginForRelative() {
-  const [isLoading, setLoading] = useState(true);
-  
+export default function LoginForAdmin() {
+  const [setLoading] = useState(true);
+
   const useStyles = makeStyles(() => ({
     img: {
       width: "200px",
       height: "200px",
     },
+    imgDiv: {
+      // padding: '0'
+    },
   }));
   const [values, setValues] = useState({
     password: "",
     email: "",
-    code: "",
     showPassword: false,
   });
-
-  const handle = () => {
-    localStorage.setItem('id', values.code)
-  }
-
-  const [showCode, setshowCode] = useState(false);
-  const handleClickShowCode = () => {
-    setshowCode(!showCode);
-  };
-  const handleChanges = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-    console.log(values);
-    localStorage.setItem("user", JSON.stringify(values.email));
-  };
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const handleShowPassword = () => {
-    console.log(setValues);
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -87,8 +65,12 @@ export default function LoginForRelative() {
       );
       result = await result.json();
       console.log(result);
+      // saveToken(result.token);
+      // saveUsername(result.email);
+      // saveUserId(result.user_id);
       if (result.tokens) {
-        history("/relative");
+        // console.log("hello");
+        history('/create');
       }
     } catch (error) {
       console.log("Error" + error);
@@ -97,6 +79,24 @@ export default function LoginForRelative() {
     }
   }
 
+  const handleChanges = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+    console.log(values);
+    localStorage.setItem("user", JSON.stringify(values.email));
+  };
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+  const handleShowPassword = () => {
+    console.log(setValues);
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const classes = useStyles();
   return (
     <>
@@ -157,6 +157,7 @@ export default function LoginForRelative() {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleShowPassword}
+                      onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
                       {values.showPassword ? (
@@ -169,38 +170,10 @@ export default function LoginForRelative() {
                 }
               />
             </Grid>
-            <Grid spacing={3} item xs={12}>
-              <InputLabel htmlFor="code">Patient's Name</InputLabel>
-              <FilledInput
-                id="code"
-                label="name"
-                color="primary"
-                required
-                type="text"
-                name="name"
-                variant="outlined"
-                value={values.code}
-                fullWidth
-                autoComplete="current-code"
-                onChange={handleChange("code")}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle code visibility"
-                      onClick={handleClickShowCode}
-                      edge="end"
-                    >
-                      {showCode ? <MdVisibilityOff /> : <MdVisibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              onClick={handle}
               sx={{ ml: 2, mt: 2, mb: 1 }}
               style={{
                 backgroundColor: "#fb3b30",

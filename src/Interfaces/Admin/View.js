@@ -12,16 +12,13 @@ import {
 import HeaderAdmin from "./HeaderAdmin";
 import viewPerson from "../../Assets/viewPerson.jpg";
 import view from "../../Assets/view.jpg";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
 
 export default function View() {
   const [card, setCard] = useState([]);
-
-const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {

@@ -1,5 +1,4 @@
 import "./LoginSignup.css";
-import { useState } from "react";
 import { Grid } from "@mui/material";
 import illustration1 from "../../Assets/illustration1.svg";
 import blueDots from "../../Assets/blueDots.gif";

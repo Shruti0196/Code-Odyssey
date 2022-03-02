@@ -42,7 +42,7 @@ export default function Relative() {
       }
       setCard(patientData.data);
     })();
-  }, []);
+  }, [patient]);
 
   function createData(Parameter, Information) {
     return { Parameter, Information };
