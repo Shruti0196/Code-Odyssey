@@ -95,6 +95,8 @@ export default function View() {
                       float: "right",
                       marginRight: "5px",
                       textDecoration: "none",
+                      color:"black",
+                      fontSize:"1.2rem"
                     }}
                   />
                 </Link>
@@ -103,6 +105,9 @@ export default function View() {
                     float: "right",
                     marginRight: "5px",
                     textDecoration: "none",
+                    fontSize:"1.2rem",
+                    color:"red",
+                    cursor:"pointer"
                   }}
                   onClick={() => {
                     deleteitem(card.id);

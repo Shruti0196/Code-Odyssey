@@ -134,30 +134,30 @@ const NavBarLogin = (activePage) => {
             <span className="navLinks" style={{ whiteSpace:"nowrap", display:"flex", flexDirection:"row" }}>
               <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">LOGIN</InputLabel>
+                <InputLabel id="demo-simple-select-label" style={{fontWeight:"700", color:"black", fontSize:"1.2rem"}}>LOGIN</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={login}
                   label="Login"
                   onChange={handleChange}
-                  // style={{ display: "inlineBlock" }}
+                  style={{ backgroundColor:"#ffc619" }}
                 >
                   <Link to="/loginforadmin" style={{ textDecoration: "none" }}>
-                    <MenuItem value={10}>Admin</MenuItem>
+                    <MenuItem value={10} style={{color:"black"}}>Admin</MenuItem>
                   </Link>
                   <Link
                     to="/loginforrelative"
                     style={{ textDecoration: "none" }}
                   >
-                    <MenuItem value={20}>Relative</MenuItem>
+                    <MenuItem value={20} style={{color:"black"}}>Relative</MenuItem>
                   </Link>
                 </Select>
               </FormControl>
               {/* </Box>
               <Box sx={{ minWidth: 120 }}> */}
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">SIGNUP</InputLabel>
+                <InputLabel id="demo-simple-select-label" style={{fontWeight:"700", color:"black", fontSize:"1.2rem"}}>SIGNUP</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -167,13 +167,13 @@ const NavBarLogin = (activePage) => {
                   style={{ backgroundColor:"#ffc619" }}
                 >
                   <Link to="/signupforadmin" style={{ textDecoration: "none" }}>
-                    <MenuItem value={10}>Admin</MenuItem>
+                    <MenuItem value={10} style={{color:"black"}}>Admin</MenuItem>
                   </Link>
                   <Link
                     to="/signupforrelative"
                     style={{ textDecoration: "none" }}
                   >
-                    <MenuItem value={20}>Relative</MenuItem>
+                    <MenuItem value={20} style={{color:"black"}}>Relative</MenuItem>
                   </Link>
                 </Select>
               </FormControl>
