@@ -121,13 +121,13 @@ export default function View() {
                     <Card
                       variant="outlined"
                       style={{
-                        height: "42vh",
+                        height: "36vh",
                         //  backgroundColor:"#fb3b30"
                       }}
                     >
                       <CardMedia
                         component="img"
-                        height="230"
+                        height="200"
                         image={viewPerson}
                       />
                       <CardContent>
