@@ -53,9 +53,9 @@ const Enrolled = () => {
             alignItems="center"
             style={{ gap: 45, marginTop: 10 }}
           >
-            {card.map((card, _) => {
+            {card.map((card, index) => {
               return (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                   <Card
                     variant="outlined"
                     style={{ backgroundColor: "#ffeee4" }}
@@ -76,9 +76,9 @@ const Enrolled = () => {
             alignItems="center"
             style={{ gap: 45, marginTop: 10 }}
           >
-            {card.map((card, _) => {
+            {card.map((card, index) => {
               return (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                   <Card
                     variant="outlined"
                     style={{ backgroundColor: "#888bd2" }}
@@ -99,9 +99,9 @@ const Enrolled = () => {
             alignItems="center"
             style={{ gap: 45, marginTop: 10 }}
           >
-            {card.map((card, _) => {
+            {card.map((card, index) => {
               return (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                   <Card
                     variant="outlined"
                     style={{ backgroundColor: "#fb3b30" }}

@@ -1,22 +1,22 @@
-import React from 'react'
-import { useState } from 'react';
-import {Grid, Typography, FilledInput, Button, Box} from '@mui/material';
-import { makeStyles } from '@material-ui/styles';
-import HeaderAdmin from './HeaderAdmin'
+import React from "react";
+import { useState } from "react";
+import { Grid, Typography, FilledInput, Button, Box } from "@mui/material";
+import { makeStyles } from "@material-ui/styles";
+import HeaderAdmin from "./HeaderAdmin";
 import create from "../../Assets/create.jpg";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import axios from "axios";
 
 const useStyles = makeStyles(() => ({
-  inputTitles:{
+  inputTitles: {
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: "25px",
     lineHeight: "30px",
-    marginRight: "50px"
+    marginRight: "50px",
   },
-  grid:{
-    backgroundImage: "url(" + create +")",
+  grid: {
+    backgroundImage: "url(" + create + ")",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },
@@ -25,60 +25,59 @@ const useStyles = makeStyles(() => ({
 const Create = () => {
   const [values, setValues] = useState({
     name: "",
-    dob:"",
-    roomNo:"",
-    allergies:"",
-    medicines:"",
-    healthStatus:"",
-    appointments:"",
-    food:"",
-    relatives:"",
+    dob: "",
+    roomNo: "",
+    allergies: "",
+    medicines: "",
+    healthStatus: "",
+    appointments: "",
+    food: "",
+    relatives: "",
   });
 
-const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // const data = new FormData(event.currentTarget);
     createLog();
+  };
+  const createLog = async () => {
+    let formField = new FormData();
+    formField.append("name", values.name);
+    formField.append("food", values.food);
+    formField.append("medicine", values.medicines);
+    formField.append("appointment", values.appointments);
+    formField.append("relatives", values.relatives);
+    formField.append("healthstatus", values.healthStatus);
+    formField.append("dob", values.dob);
+    formField.append("allergies", values.allergies);
+    formField.append("roomno", values.roomNo);
 
-  }
-    async function createLog(){
-      try{
-        let result = await axios("http://hackathonwork.pythonanywhere.com/updates/create",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name: values.name,
-            food: values.food,
-            medicine: values.medicines,
-            appointment: values.appointments,
-            relatives: values.relatives,
-            healthstatus: values.healthStatus,
-            dob: values.dob,
-            allergies: values.allergies,
-            roomno: values.roomNo,
-            photo: photo
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-    result = await result.json();
-    console.log(result);
-    if(result.error===true){
+    if (photo !== null) {
+      formField.append("photo", photo);
+    }
+
+    await axios({
+      method: "POST",
+      url: "http://hackathonwork.pythonanywhere.com/updates/create",
+      data: formField,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }).then((response) => {
+      console.log(response.data);
+      // .then((result)=>{
+      //   console.log(result.data)
+      // })
+      if (response.error === true) {
         swal("Oops!", "Error while saving data!", "error");
-    }
-    else{
-      swal("Done!", "Patient data saved successfully!", "success");
-    }
-  }
-  catch (error) {
-    console.log("Error" + error);
-   }
-}
+      } else {
+        swal("Done!", "Patient data saved successfully!", "success");
+      }
+    });
+  };
 
   const handleChanges = (event) => {
     setValues({
@@ -92,18 +91,33 @@ const [photo, setPhoto] = useState(null);
   const classes = useStyles();
   return (
     <div className={classes.grid}>
-        <HeaderAdmin activePage="Create" />
-        <Grid container direction="column" justifyContent="space-evenly" alignItems="flex-start" style={{gap:15}}> 
-        <Grid item xs={12} sm={12} md={6} lg={6} style={{marginTop:"20px", marginLeft:"36px"}}>
-        <Typography style={{fontSize: "30px"}}>Create a Member Log</Typography>
+      <HeaderAdmin activePage="Create" />
+      <Grid
+        container
+        direction="column"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+        style={{ gap: 15 }}
+      >
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          style={{ marginTop: "20px", marginLeft: "36px" }}
+        >
+          <Typography style={{ fontSize: "30px" }}>
+            Create a Member Log
+          </Typography>
         </Grid>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Name</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>Name</Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="name"
                 label="name"
                 autoFocus
@@ -116,20 +130,22 @@ const [photo, setPhoto] = useState(null);
                 value={values.name}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
-         
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Date Of Birth</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+            </Grid>
+          </Grid>
+
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>
+                Date Of Birth
+              </Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="dob"
                 label="dob"
-                type='text'
+                type="text"
                 name="dob"
                 variant="outlined"
                 color="primary"
@@ -137,17 +153,19 @@ const [photo, setPhoto] = useState(null);
                 value={values.dob}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Room Number Alloted</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>
+                Room Number Alloted
+              </Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="roomNo"
                 label="roomNo"
                 required
@@ -159,17 +177,17 @@ const [photo, setPhoto] = useState(null);
                 value={values.roomNo}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Allergies</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>Allergies</Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="allergies"
                 label="allergies"
                 required
@@ -181,17 +199,17 @@ const [photo, setPhoto] = useState(null);
                 value={values.allergies}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Medicines</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>Medicines</Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="medicines"
                 label="medicines"
                 required
@@ -203,17 +221,19 @@ const [photo, setPhoto] = useState(null);
                 value={values.medicines}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Health Status</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>
+                Health Status
+              </Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="healthStatus"
                 label="healthStatus"
                 required
@@ -225,17 +245,19 @@ const [photo, setPhoto] = useState(null);
                 value={values.healthStatus}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Appointments</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>
+                Appointments
+              </Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="appointments"
                 label="appointments"
                 required
@@ -247,17 +269,17 @@ const [photo, setPhoto] = useState(null);
                 value={values.appointments}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Food</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>Food</Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="food"
                 label="food"
                 required
@@ -269,17 +291,17 @@ const [photo, setPhoto] = useState(null);
                 value={values.food}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Photo</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>Photo</Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="photo"
                 label="photo"
                 required
@@ -287,18 +309,20 @@ const [photo, setPhoto] = useState(null);
                 name="photo"
                 color="primary"
                 src={photo}
-                onChange={(e)=>setPhoto(e.target.files[0])}
-                style={{width:"250px"}}
+                onChange={(e) => setPhoto(e.target.files[0])}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
+            </Grid>
+          </Grid>
 
-        <Grid container direction="row" marginBottom={5}>
-        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
-        <Typography className={classes.inputTitles}>Relatives Known</Typography>
-        </Grid>
-        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
-        <FilledInput
+          <Grid container direction="row" marginBottom={5}>
+            <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+              <Typography className={classes.inputTitles}>
+                Relatives Known
+              </Typography>
+            </Grid>
+            <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+              <FilledInput
                 id="relatives"
                 label="relatives"
                 required
@@ -310,30 +334,30 @@ const [photo, setPhoto] = useState(null);
                 value={values.relatives}
                 fullWidth
                 onChange={handleChanges}
-                style={{width:"250px"}}
+                style={{ width: "250px" }}
               />
-        </Grid>
-        </Grid>
-        <Button
-              type="submit"
-              // onClick={()=>{
-              //   swal("Done!", "Patient data saved successfully!", "success");
-              // }}
-              variant="contained"
-              sx={{ ml: 2, mt: 2, mb: 1 }}
-              style={{
-                backgroundColor: "#fb3b30",
-                color: "#888bd2",
-                fontWeight: "bold",
-                fontSize: "18px",
-              }}
-            >
-              Submit
-            </Button>
-            </Box>
-        </Grid>
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            // onClick={()=>{
+            //   swal("Done!", "Patient data saved successfully!", "success");
+            // }}
+            variant="contained"
+            sx={{ ml: 2, mt: 2, mb: 1 }}
+            style={{
+              backgroundColor: "#fb3b30",
+              color: "#888bd2",
+              fontWeight: "bold",
+              fontSize: "18px",
+            }}
+          >
+            Submit
+          </Button>
+        </Box>
+      </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default Create
+export default Create;

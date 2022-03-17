@@ -10,7 +10,6 @@ import {
   Box,
 } from "@mui/material";
 import HeaderAdmin from "./HeaderAdmin";
-import viewPerson from "../../Assets/viewPerson.jpg";
 import view from "../../Assets/view.jpg";
 import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -133,7 +132,7 @@ export default function View() {
                       <CardMedia
                         component="img"
                         height="230"
-                        image={viewPerson}
+                        image={card.photo}
                       />
                       <CardContent>
                         <Typography variant="h4" align="center">
