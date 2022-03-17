@@ -13,17 +13,11 @@ const useStyles = makeStyles(() => ({
     lineHeight: "30px",
     marginRight: "50px",
   },
-  // grid:{
-  //   backgroundImage: "url(" + create +")",
-  //   backgroundRepeat: "no-repeat",
-  //   backgroundSize: "cover",
-  // },
 }));
 
 export default function Edit({ data, setData }) {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [name, setName] = useState(null);
   const [dob, setDob] = useState(null);
   const [roomNo, setroomNo] = useState(null);
@@ -40,7 +34,6 @@ export default function Edit({ data, setData }) {
       const result = await axios.get(
         `http://hackathonwork.pythonanywhere.com/updates/retrieve/${id}`
       );
-      //console.log(result.data.data.name);
       setName(result.data.data.name);
       setDob(result.data.data.dob);
       setroomNo(result.data.data.roomno);
@@ -79,18 +72,6 @@ export default function Edit({ data, setData }) {
     });
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   //const data = new FormData(event.currentTarget);
-  //   editLog();
-  // };
-  // const handleChanges = (event) => {
-  //   setValues({
-  //     ...values,
-  //     [event.target.name]: event.target.value,
-  //   });
-  //   console.log(values);
-  // };
   const classes = useStyles();
   return (
     <div className={classes.grid}>
@@ -113,14 +94,12 @@ export default function Edit({ data, setData }) {
             Edit {name}'s Log
           </Typography>
         </Grid>
-        {/* <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}> */}
         <Grid container direction="row" marginBottom={5}>
           <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
             <Typography className={classes.inputTitles}>Name</Typography>
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
@@ -278,22 +257,20 @@ export default function Edit({ data, setData }) {
           </Grid>
         </Grid>
 
-        {/* <Grid container direction="row" marginBottom={5}>
+        <Grid container direction="row" marginBottom={5}>
           <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
             <Typography className={classes.inputTitles}>Photo</Typography>
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               type="file"
               name="photo"
-              value={photo}
               onChange={(e) => setPhoto(e.target.files[0])}
               style={{ width: "250px" }}
             />
           </Grid>
-        </Grid> */}
+        </Grid>
 
         <Button
           type="submit"
