@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import HeaderAdmin from './HeaderAdmin'
 import create from "../../Assets/create.jpg";
 import swal from 'sweetalert';
+import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   inputTitles:{
@@ -33,6 +34,9 @@ const Create = () => {
     food:"",
     relatives:"",
   });
+
+const [photo, setPhoto] = useState(null);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // const data = new FormData(event.currentTarget);
@@ -41,7 +45,7 @@ const Create = () => {
   }
     async function createLog(){
       try{
-        let result = await fetch("http://hackathonwork.pythonanywhere.com/updates/create",
+        let result = await axios("http://hackathonwork.pythonanywhere.com/updates/create",
         {
           method: "POST",
           body: JSON.stringify({
@@ -54,6 +58,7 @@ const Create = () => {
             dob: values.dob,
             allergies: values.allergies,
             roomno: values.roomNo,
+            photo: photo
         }),
         headers: {
           "Content-Type": "application/json",
@@ -63,6 +68,12 @@ const Create = () => {
     );
     result = await result.json();
     console.log(result);
+    if(result.error===true){
+        swal("Oops!", "Error while saving data!", "error");
+    }
+    else{
+      swal("Done!", "Patient data saved successfully!", "success");
+    }
   }
   catch (error) {
     console.log("Error" + error);
@@ -75,6 +86,7 @@ const Create = () => {
       [event.target.name]: event.target.value,
     });
     console.log(values);
+    console.log(photo);
     //localStorage.setItem("user", JSON.stringify(values.email));
   };
   const classes = useStyles();
@@ -96,7 +108,7 @@ const Create = () => {
                 label="name"
                 autoFocus
                 required
-                type="name"
+                type="text"
                 name="name"
                 variant="outlined"
                 color="primary"
@@ -117,7 +129,7 @@ const Create = () => {
         <FilledInput
                 id="dob"
                 label="dob"
-                type="text"
+                type='text'
                 name="dob"
                 variant="outlined"
                 color="primary"
@@ -139,7 +151,7 @@ const Create = () => {
                 id="roomNo"
                 label="roomNo"
                 required
-                type="text"
+                type="number"
                 name="roomNo"
                 variant="outlined"
                 color="primary"
@@ -264,6 +276,25 @@ const Create = () => {
 
         <Grid container direction="row" marginBottom={5}>
         <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
+        <Typography className={classes.inputTitles}>Photo</Typography>
+        </Grid>
+        <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
+        <FilledInput
+                id="photo"
+                label="photo"
+                required
+                type="file"
+                name="photo"
+                color="primary"
+                src={photo}
+                onChange={(e)=>setPhoto(e.target.files[0])}
+                style={{width:"250px"}}
+              />
+        </Grid>
+        </Grid>
+
+        <Grid container direction="row" marginBottom={5}>
+        <Grid item sm={6} md={3} style={{marginLeft:"46px"}}>
         <Typography className={classes.inputTitles}>Relatives Known</Typography>
         </Grid>
         <Grid item sm={6} md={3} style={{marginLeft: '15px'}}>
@@ -285,9 +316,9 @@ const Create = () => {
         </Grid>
         <Button
               type="submit"
-              onClick={()=>{
-                swal("Done!", "Patient data saved successfully!", "success");
-              }}
+              // onClick={()=>{
+              //   swal("Done!", "Patient data saved successfully!", "success");
+              // }}
               variant="contained"
               sx={{ ml: 2, mt: 2, mb: 1 }}
               style={{
