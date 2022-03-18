@@ -125,7 +125,7 @@ export default function View() {
                     <Card
                       variant="outlined"
                       style={{
-                        height: "42vh",
+                        height: "36vh",
                         //  backgroundColor:"#fb3b30"
                       }}
                     >
