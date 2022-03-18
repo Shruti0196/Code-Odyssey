@@ -58,8 +58,8 @@ const NavAdmin = (activePage) => {
       style={{ backgroundColor: "white", height: "100%" }}
     >
       <List>
-        {["Create", "View", "Enrolled"].map((text) => (
-          <Link className="headerLinks" to={`/${text.toLowerCase()}`}>
+        {["Create", "View", "Enrolled"].map((text,index) => (
+          <Link className="headerLinks" to={`/${text.toLowerCase()}`} key={index}>
             <ListItem button key={text}>
               <ListItemIcon>
                 <HiOutlineArrowNarrowRight className="headerLinks" />

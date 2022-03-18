@@ -13,28 +13,11 @@ const useStyles = makeStyles(() => ({
     lineHeight: "30px",
     marginRight: "50px",
   },
-  // grid:{
-  //   backgroundImage: "url(" + create +")",
-  //   backgroundRepeat: "no-repeat",
-  //   backgroundSize: "cover",
-  // },
 }));
 
 export default function Edit({ data, setData }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  //const patient = localStorage.getItem("Name");
-  // const [values, setValues] = useState({
-  //   name: "",
-  //   dob: "",
-  //   roomNo: "",
-  //   allergies: "",
-  //   medicines: "",
-  //   healthStatus: "",
-  //   appointments: "",
-  //   food: "",
-  //   relatives: "",
-  // });
   const [name, setName] = useState(null);
   const [dob, setDob] = useState(null);
   const [roomNo, setroomNo] = useState(null);
@@ -44,13 +27,13 @@ export default function Edit({ data, setData }) {
   const [appointments, setAppointments] = useState(null);
   const [food, setFood] = useState(null);
   const [relatives, setRelatives] = useState(null);
+  const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
     let loadPatients = async () => {
       const result = await axios.get(
         `http://hackathonwork.pythonanywhere.com/updates/retrieve/${id}`
       );
-      //console.log(result.data.data.name);
       setName(result.data.data.name);
       setDob(result.data.data.dob);
       setroomNo(result.data.data.roomno);
@@ -60,6 +43,7 @@ export default function Edit({ data, setData }) {
       setAppointments(result.data.data.appointment);
       setFood(result.data.data.food);
       setRelatives(result.data.data.relatives);
+      setPhoto(result.data.data.photo);
     };
     loadPatients();
   }, [id]);
@@ -75,7 +59,9 @@ export default function Edit({ data, setData }) {
     formField.append("healthstatus", healthStatus);
     formField.append("food", food);
     formField.append("relatives", relatives);
-
+    if (photo !== null) {
+      formField.append("photo", photo);
+    }
     await axios({
       method: "PUT",
       url: `http://hackathonwork.pythonanywhere.com/updates/update/${id}`,
@@ -86,22 +72,9 @@ export default function Edit({ data, setData }) {
     });
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   //const data = new FormData(event.currentTarget);
-  //   editLog();
-  // };
-  // const handleChanges = (event) => {
-  //   setValues({
-  //     ...values,
-  //     [event.target.name]: event.target.value,
-  //   });
-  //   console.log(values);
-  // };
   const classes = useStyles();
   return (
     <div className={classes.grid}>
-      {/* <HeaderAdmin activePage="Create" /> */}
       <Grid
         container
         direction="column"
@@ -121,21 +94,18 @@ export default function Edit({ data, setData }) {
             Edit {name}'s Log
           </Typography>
         </Grid>
-        {/* <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}> */}
         <Grid container direction="row" marginBottom={5}>
           <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
             <Typography className={classes.inputTitles}>Name</Typography>
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -153,11 +123,8 @@ export default function Edit({ data, setData }) {
               autoComplete
               type="text"
               name="dob"
-              //placeholder={data.dob}
               value={dob}
-              //onChange={(e)=>{values({dob: e.target.value})}}
               onChange={(e) => setDob(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -171,14 +138,12 @@ export default function Edit({ data, setData }) {
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={roomNo}
               onChange={(e) => setroomNo(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -190,14 +155,12 @@ export default function Edit({ data, setData }) {
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={allergies}
               onChange={(e) => setAllergies(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -209,14 +172,12 @@ export default function Edit({ data, setData }) {
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={medicines}
               onChange={(e) => setMedicines(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -230,14 +191,12 @@ export default function Edit({ data, setData }) {
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={healthStatus}
               onChange={(e) => sethealthStatus(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -251,14 +210,12 @@ export default function Edit({ data, setData }) {
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={appointments}
               onChange={(e) => setAppointments(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -270,14 +227,12 @@ export default function Edit({ data, setData }) {
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={food}
               onChange={(e) => setFood(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
@@ -291,18 +246,32 @@ export default function Edit({ data, setData }) {
           </Grid>
           <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
             <TextField
-              //placeholder={data.name}
               variant="standard"
               autoComplete
               type="text"
               name="name"
               value={relatives}
               onChange={(e) => setRelatives(e.target.value)}
-              //onChange={handleChanges}
               style={{ width: "250px" }}
             />
           </Grid>
         </Grid>
+
+        <Grid container direction="row" marginBottom={5}>
+          <Grid item sm={6} md={3} style={{ marginLeft: "46px" }}>
+            <Typography className={classes.inputTitles}>Photo</Typography>
+          </Grid>
+          <Grid item sm={6} md={3} style={{ marginLeft: "15px" }}>
+            <TextField
+              variant="standard"
+              type="file"
+              name="photo"
+              onChange={(e) => setPhoto(e.target.files[0])}
+              style={{ width: "250px" }}
+            />
+          </Grid>
+        </Grid>
+
         <Button
           type="submit"
           onClick={editLog}
@@ -317,7 +286,6 @@ export default function Edit({ data, setData }) {
         >
           Update
         </Button>
-        {/* </Box> */}
       </Grid>
     </div>
   );

@@ -200,8 +200,8 @@ const NavBar = (activePage) => {
             style={{ justifyContent: "center", paddingRight:"200px",zIndex:"-1.5rem" }}
           >
             <span className="navLinks" style={{ whiteSpace:"nowrap", display:"flex", flexDirection:"row" }}>
-              <Link disabled={value.home} className="headerLinks" to="/">
-                <button disabled={value.home} className="btn" /*style={{ display: "inlineBlock" }}*/>
+              <Link disabled={value.home}  to="/">
+                <button disabled={value.home} className="btn">
                   Home
                 </button>
               </Link>
@@ -209,52 +209,51 @@ const NavBar = (activePage) => {
                 href="https://pages.razorpay.com/pl_Iv8oF3Tp3y1zGB/view"
                 rel="noreferrer"
                 target="_blank"
-                className="headerLinks"
               >
-                <button className="btn" /*style={{ display: "inlineBlock" }}*/>Donate</button>
+                <button className="btn">Donate</button>
               </a>
               <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">LOGIN</InputLabel>
+                <InputLabel id="demo-simple-select-label" style={{fontWeight:"700", color:"black", fontSize:"1.2rem"}}>LOGIN</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={login}
                   label="Login"
                   onChange={handleChange}
-                  // style={{ display: "inlineBlock" }}
+                  style={{ backgroundColor:"#ffc619" }}
                 >
                   <Link to="/loginforadmin" style={{ textDecoration: "none" }}>
-                    <MenuItem value={10}>Admin</MenuItem>
+                    <MenuItem value={10} style={{color:"black"}}>Admin</MenuItem>
                   </Link>
                   <Link
                     to="/loginforrelative"
                     style={{ textDecoration: "none" }}
                   >
-                    <MenuItem value={20}>Relative</MenuItem>
+                    <MenuItem value={20} style={{color:"black"}}>Relative</MenuItem>
                   </Link>
                 </Select>
               </FormControl>
               {/* </Box>
               <Box sx={{ minWidth: 120 }}> */}
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">SIGNUP</InputLabel>
+                <InputLabel id="demo-simple-select-label" style={{fontWeight:"700", color:"black", fontSize:"1.2rem"}}>SIGNUP</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={signup}
                   label="Signup"
                   onChange={handleChange}
-                  style={{ backgroundColor:"#f3a26d" }}
+                  style={{ backgroundColor:"#ffc619" }}
                 >
                   <Link to="/signupforadmin" style={{ textDecoration: "none" }}>
-                    <MenuItem value={10}>Admin</MenuItem>
+                    <MenuItem value={10} style={{color:"black"}}>Admin</MenuItem>
                   </Link>
                   <Link
                     to="/signupforrelative"
                     style={{ textDecoration: "none" }}
                   >
-                    <MenuItem value={20}>Relative</MenuItem>
+                    <MenuItem value={20} style={{color:"black"}}>Relative</MenuItem>
                   </Link>
                 </Select>
               </FormControl>

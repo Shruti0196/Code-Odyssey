@@ -10,7 +10,6 @@ import {
   Box,
 } from "@mui/material";
 import HeaderAdmin from "./HeaderAdmin";
-import viewPerson from "../../Assets/viewPerson.jpg";
 import view from "../../Assets/view.jpg";
 import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -95,6 +94,8 @@ export default function View() {
                       float: "right",
                       marginRight: "5px",
                       textDecoration: "none",
+                      color:"black",
+                      fontSize:"1.2rem"
                     }}
                   />
                 </Link>
@@ -103,6 +104,9 @@ export default function View() {
                     float: "right",
                     marginRight: "5px",
                     textDecoration: "none",
+                    fontSize:"1.2rem",
+                    color:"red",
+                    cursor:"pointer"
                   }}
                   onClick={() => {
                     deleteitem(card.id);
@@ -127,8 +131,8 @@ export default function View() {
                     >
                       <CardMedia
                         component="img"
-                        height="200"
-                        image={viewPerson}
+                        height="230"
+                        image={card.photo}
                       />
                       <CardContent>
                         <Typography variant="h4" align="center">

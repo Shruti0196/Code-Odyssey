@@ -54,6 +54,7 @@ export default function PatientDetails() {
     createData("Allergie(s)", card.allergies),
     createData("Room Number Alloted", card.roomno),
     createData("Relatives Enrolled", card.relatives),
+    createData("Member Photo", card.photo),
   ];
   return (
     <>

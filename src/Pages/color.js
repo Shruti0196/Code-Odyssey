@@ -1,7 +1,8 @@
 export const COLORS = {
-    cream: "#ffeee4",
-    dblue: "#2d2f84",
-    lblue: "#888bd2",
-    lorange: "#f3a26d",
-    dorange: "#fb3b30"
+    grey: "#e1e3e7",
+    dblue: "#024089",
+    lblue: "#004da9",
+    dorange: "#fa841a",
+    morange: "#fda300",
+    lorange:"#ffc619",
   }
