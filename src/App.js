@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import PatientDetails from "./Interfaces/Admin/PatientDetails";
 import View from "./Interfaces/Admin/View";
 import Edit from "./Interfaces/Admin/Edit";
+import ChatBot from "./Interfaces/Relative/ChatBot";
+import Chat from "./Interfaces/Admin/Chat";
 
 function App() {
   // const [data,setData]=useState({})
@@ -47,6 +49,8 @@ function App() {
         />
         <Route exact path="/loginforadmin" element={<LoginPageAdmin />} />
         <Route exact path="/loginforrelative" element={<LoginPageRelative />} />
+        <Route exact path="/chat" element={<ChatBot />} />
+        <Route exact path="/chatwithrelatives" element={<Chat />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
